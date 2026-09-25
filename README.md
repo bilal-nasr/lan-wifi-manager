@@ -41,6 +41,12 @@ The app has no telemetry, no accounts and no data collection. It only connects t
 
 Settings and logs stay on your PC in `%AppData%\LanWifiManager`.
 
+**Location:** to show your Wi-Fi network's name and signal, the app asks Windows for Wi-Fi details. Since Windows 11 24H2, Windows counts this as location access, because network names can reveal where you are, so it appears as "Network Command Shell" under Privacy & security → Location.
+
+- The app asks for your consent first, and you can change it in Settings → Adapters.
+- Even when allowed, it only reads Wi-Fi details while its window is open, once at startup, and when reconnecting Wi-Fi.
+- It never reads GPS or coordinates, and sends nothing anywhere.
+
 ## Problems or ideas?
 
 Open an [issue](../../issues).
