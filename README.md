@@ -13,6 +13,8 @@ A free Windows app that keeps you online when your PC is connected by **both LAN
 
 Once it's installed, the app updates itself: **Settings → Updates & about → Check for updates**.
 
+> **Note:** GitHub adds **Source code (zip / tar.gz)** links to every release automatically. Here they only contain this README and the screenshots. The app's source code isn't published, so download **`LanWifiManager.exe`** instead.
+
 ## Features
 
 - **Automatic failover.** It checks the internet through the LAN and through the Wi-Fi every 30 seconds by default, using several pings per check and a DNS test. It rates each connection *Good*, *Degraded* (packet loss, high latency, jitter, or DNS not answering) or *Down*.
