@@ -2,7 +2,7 @@
 
 A free app for **Windows, Ubuntu and macOS** that keeps you online when your computer is connected by **both LAN and Wi-Fi**. If the LAN stops working, or just gets bad, it moves your traffic to Wi-Fi. When the LAN is healthy again, it switches back.
 
-![Resources tab](docs/resources.png)
+![Status tab: the route map shows which connection carries your traffic](docs/status.png)
 
 ## Download
 
@@ -27,10 +27,12 @@ The Windows app updates itself (**Settings → Updates & about → Check for upd
   - A poor LAN switches only if the Wi-Fi is actually better.
   - It switches back once the LAN is healthy again.
 - **Manual modes:** Use LAN, Use Wi-Fi, and Toggle, from the window or the tray / top-bar icon.
-- **Dashboard:** live latency chart for both connections, packet loss, jitter, DNS status, and which adapter carries your traffic.
-- **Resources tab:** graphs for CPU (one line per core), memory and swap, network and disk (and the GPU on Windows and Ubuntu), with a process list per resource and **End task**.
+- **Status tab:** a two-line route map showing which connection carries your traffic, with latency, packet loss, jitter and DNS status for both links.
+- **Resources tab:** a CPU core strip and history plot, plus panels for memory and swap, GPU, network and disk, with a process list per resource and **End task**.
 - **Live speed:** download/upload speed next to the tray icons on Windows, and in the top bar (top right) on Ubuntu and macOS.
 - **Runs in the background:** close to the tray / top bar, start at login, notifications, and a daily log file.
+
+![Resources tab](docs/resources.png)
 
 Both adapters stay connected the whole time. The app only changes which one the system prefers, so switching is instant: the interface metric on Windows, the Wi-Fi route priority through NetworkManager on Ubuntu, and the network service order on macOS. When you quit, it puts the original preference back.
 
@@ -62,3 +64,5 @@ Open an [issue](../../issues).
 
 Freeware. You may use it for free, personally or at work. The source code isn't public. Please don't redistribute modified copies.
 © 2026 bilal-nasr
+
+The bundled Overpass font is © 2021 The Overpass Project Authors and is licensed under the [SIL Open Font License 1.1](https://openfontlicense.org), which applies to the font independently of the app licence. The full font licence is available in Settings → Updates & about.
