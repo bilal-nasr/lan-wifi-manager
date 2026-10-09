@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ubuntu: use Wi-Fi when Ethernet has no internet</title>
+<meta name="description" content="How Ubuntu picks Ethernet or Wi-Fi, changing the route metric with nmcli, what NetworkManager's connectivity check does, and automatic failover.">
+<link rel="canonical" href="https://bilal-nasr.github.io/lan-wifi-manager/guides/ubuntu-ethernet-wifi-failover/">
+<meta name="theme-color" content="#111318">
+<meta name="color-scheme" content="light dark">
+<meta name="author" content="bilal-nasr">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="LAN Wi-Fi Manager">
+<meta property="og:title" content="Ubuntu: use Wi-Fi when Ethernet has no internet">
+<meta property="og:description" content="How Ubuntu picks Ethernet or Wi-Fi, changing the route metric with nmcli, what NetworkManager's connectivity check does, and automatic failover.">
+<meta property="og:url" content="https://bilal-nasr.github.io/lan-wifi-manager/guides/ubuntu-ethernet-wifi-failover/">
+<meta property="og:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ubuntu: use Wi-Fi when Ethernet has no internet">
+<meta name="twitter:description" content="How Ubuntu picks Ethernet or Wi-Fi, changing the route metric with nmcli, what NetworkManager's connectivity check does, and automatic failover.">
+<meta name="twitter:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta name="twitter:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "LAN Wi-Fi Manager", "item": "https://bilal-nasr.github.io/lan-wifi-manager/" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://bilal-nasr.github.io/lan-wifi-manager/guides/" },
+    { "@type": "ListItem", "position": 3, "name": "Ubuntu Ethernet to Wi-Fi failover", "item": "https://bilal-nasr.github.io/lan-wifi-manager/guides/ubuntu-ethernet-wifi-failover/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Ubuntu: use Wi-Fi when Ethernet has no internet",
+  "description": "How Ubuntu picks Ethernet or Wi-Fi, changing the route metric with nmcli, what NetworkManager's connectivity check does, and automatic failover.",
+  "datePublished": "2026-10-08",
+  "dateModified": "2026-10-08",
+  "author": { "@type": "Person", "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer", "name": "bilal-nasr", "url": "https://github.com/bilal-nasr", "sameAs": ["https://github.com/bilal-nasr"] },
+  "publisher": { "@type": "Person", "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer", "name": "bilal-nasr", "url": "https://github.com/bilal-nasr", "sameAs": ["https://github.com/bilal-nasr"] },
+  "image": "https://bilal-nasr.github.io/lan-wifi-manager/og-image.png",
+  "mainEntityOfPage": "https://bilal-nasr.github.io/lan-wifi-manager/guides/ubuntu-ethernet-wifi-failover/"
+}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="band">
+  <div class="wrap band-in">
+    <a class="brand" href="../../" aria-label="LAN Wi-Fi Manager, home">
+      <span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>
+      LAN Wi-Fi Manager
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="../../#how-it-works">How it works</a></li>
+        <li><a href="../../#download">Download</a></li>
+        <li class="nav-opt"><a href="../../#compare">Compare</a></li>
+        <li><a href="../../#faq">FAQ</a></li>
+        <li><a href="../" aria-current="true">Guides</a></li>
+      </ul>
+    </nav>
+    <div class="band-right">
+      <span class="ver">v2.2.0</span>
+      <a class="band-cta" href="../../#download"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Download</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../">Home</a></li>
+      <li><a href="../">Guides</a></li>
+      <li><span aria-current="page">Ubuntu</span></li>
+    </ol>
+  </nav>
+
+  <header class="page-head">
+    <h1>Ubuntu: use Wi-Fi when Ethernet has no internet</h1>
+    <p class="lede">Ubuntu can keep Ethernet and Wi-Fi connected together, and NetworkManager decides which one carries your traffic. This guide shows how that choice is made, how to change it with <code>nmcli</code>, and how far the built-in connectivity check goes.</p>
+    <p class="meta">Last updated <time datetime="2026-10-08">8 October 2026</time><span class="dot" aria-hidden="true">·</span>Ubuntu 24.04 with NetworkManager</p>
+  </header>
+
+  <div class="article">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-in">
+        <b>On this page</b>
+        <ol>
+          <li><a href="#short-answer">The short answer</a></li>
+          <li><a href="#metrics">How Ubuntu picks a connection</a></li>
+          <li><a href="#temporary">Prefer Wi-Fi for now</a></li>
+          <li><a href="#permanent">Change the order for good</a></li>
+          <li><a href="#connectivity">The connectivity check</a></li>
+          <li><a href="#scripts">Scripts</a></li>
+          <li><a href="#automatic">Do it automatically</a></li>
+        </ol>
+      </div>
+    </aside>
+
+    <article class="prose">
+      <h2 id="short-answer">The short answer</h2>
+      <div class="short">
+        <p>NetworkManager gives every connection a <b>route metric</b>, and the lowest one carries your traffic. Ethernet normally gets 100 and Wi-Fi 600, so Ethernet wins while its link is up. You can change the numbers with <code>nmcli</code>. NetworkManager's connectivity check, when it's on, can also push a connection without internet down the list, but it checks only every few minutes and only asks "internet or not".</p>
+      </div>
+
+      <h2 id="metrics">How Ubuntu picks a connection</h2>
+      <p>Ubuntu sends traffic through the default route with the lowest metric, and Ethernet (100) normally beats Wi-Fi (600). To see the default routes:</p>
+      <div class="code"><pre><code>ip route show default</code></pre></div>
+      <p>With both connected you see two lines, something like this (your device names and addresses will differ):</p>
+      <div class="code"><pre data-nocopy><code>default via 192.168.1.1 dev enp3s0 proto dhcp src 192.168.1.20 metric 100
+default via 192.168.1.1 dev wlp2s0 proto dhcp src 192.168.1.21 metric 600</code></pre></div>
+      <p>The route with the lower metric is used. <code>enp3s0</code> is the Ethernet device here and <code>wlp2s0</code> the Wi-Fi. To list your devices and connection names:</p>
+      <div class="code"><pre><code>nmcli device status
+nmcli connection show --active</code></pre></div>
+      <p>If the Ethernet cable is unplugged, its route goes away and Wi-Fi takes over at once. If the cable stays connected but the router or provider has stopped working, the Ethernet route stays, and with it the lower metric.</p>
+
+      <h2 id="temporary">Prefer Wi-Fi for now</h2>
+      <p>Give the Wi-Fi device a lower route metric than the Ethernet one with <code>nmcli device modify</code>. Traffic moves at once, and your saved settings stay as they are. Use your own device name:</p>
+      <div class="code"><pre><code>nmcli device modify wlp2s0 ipv4.route-metric 90</code></pre></div>
+      <p>This changes only the running device, IPv4 only. Nothing disconnects. To undo it, re-apply the saved profile (a reboot also undoes it):</p>
+      <div class="code"><pre><code>nmcli device reapply wlp2s0</code></pre></div>
+      <p>Keep the number above 50 if you use a VPN, since NetworkManager commonly gives VPN routes a metric of 50.</p>
+
+      <h2 id="permanent">Change the order for good</h2>
+      <p>To make one connection always preferred, set the metric in its saved profile and reconnect it. For example, to always prefer Ethernet with a fixed value:</p>
+      <div class="code"><pre><code>nmcli connection modify "Wired connection 1" ipv4.route-metric 100 ipv6.route-metric 100
+nmcli connection modify "MyWiFi" ipv4.route-metric 600 ipv6.route-metric 600
+nmcli connection up "Wired connection 1"
+nmcli connection up "MyWiFi"</code></pre></div>
+      <p>Use the names from <code>nmcli connection show</code>. A value of <code>-1</code> returns a profile to the default. This is a fixed order: it still won't react when the preferred connection loses its internet.</p>
+
+      <h2 id="connectivity">NetworkManager's connectivity check</h2>
+      <p>It is a slow, basic failover: when the check is on and a device fails it, that device drops down the list. NetworkManager tests whether each device really reaches the internet by fetching a small web page. On Ubuntu desktop this is usually set up by a configuration file pointing at <code>connectivity-check.ubuntu.com</code>, and it can be switched off in Settings under privacy.</p>
+      <p>To move a failing device down the list, NetworkManager can add a large penalty (20000) to that device's default-route metric. The other device then has the lower number and takes your traffic: a built-in failover of sorts. To see what your system does:</p>
+      <div class="code"><pre><code># is the check turned on? (prints "b true" or "b false")
+busctl get-property org.freedesktop.NetworkManager \
+  /org/freedesktop/NetworkManager \
+  org.freedesktop.NetworkManager ConnectivityCheckEnabled
+
+# the result for each device: full, limited, portal, none or unknown
+nmcli -f DEVICE,IP4-CONNECTIVITY device status
+
+# where it is configured, and how often it runs
+grep -r -A4 "\[connectivity\]" /etc/NetworkManager /usr/lib/NetworkManager 2>/dev/null</code></pre></div>
+      <p>Its limits for this job:</p>
+      <ul>
+        <li><b>It is slow.</b> Unless the configuration sets an <code>interval</code>, it checks every 300 seconds, so an outage can last minutes before anything changes.</li>
+        <li><b>It is one request.</b> A single HTTP fetch to one address, from one place.</li>
+        <li><b>It is yes or no.</b> A connection with heavy packet loss or very high latency still counts as working.</li>
+        <li><b>It is quiet.</b> Nothing on screen tells you which connection is carrying your traffic or why it changed.</li>
+      </ul>
+      <p>If you want to rely on it, you can lower the interval in a file under <code>/etc/NetworkManager/conf.d/</code> and restart NetworkManager. Test it by unplugging your router's internet cable rather than the computer's, since that is the case that matters.</p>
+
+      <h2 id="scripts">Scripts</h2>
+      <p>A script can do failover, but you write and maintain the logic yourself. A common answer on Ask Ubuntu is a NetworkManager dispatcher script in <code>/etc/NetworkManager/dispatcher.d/</code>, or a timer that pings and changes metrics. The logic has to ping through each device separately (<code class="nw">ping -I enp3s0 ...</code>), avoid switching back and forth on a single lost packet, and restore the original metrics afterwards.</p>
+
+      <h2 id="automatic">Do it automatically</h2>
+      <p>LAN Wi-Fi Manager tests both devices and changes the Wi-Fi route metric for you, then changes it back, with a window you can look at:</p>
+      <ul>
+        <li>Every 30 seconds by default it pings the internet through the Ethernet device and through the Wi-Fi device separately, and checks DNS on each.</li>
+        <li>After 2 bad Ethernet checks it lowers the Wi-Fi device's route metric just below the Ethernet one with <code>nmcli device modify</code>, the temporary change shown above. Only the Wi-Fi device's IPv4 metric is changed (IPv6 is left alone, so on a dual-stack network IPv6 traffic can stay on Ethernet), and it stays above the VPN range.</li>
+        <li>It works alongside the connectivity check: it compares metrics without the check's penalty, and it won't move you to a Wi-Fi that NetworkManager reports has no internet.</li>
+        <li>After 2 good Ethernet checks it moves back. No password is needed: NetworkManager allows the change for the signed-in user.</li>
+        <li>A route map shows which line is carrying traffic and every switch, with latency, loss, jitter and DNS for both.</li>
+      </ul>
+      <div class="app-box">
+        <h3><span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>LAN Wi-Fi Manager for Ubuntu</h3>
+        <p>Free, closed source, no account. Install with <code>sudo apt install ./LanWifiManager_2.2.0_amd64.deb</code> from the download folder.</p>
+        <div class="get">
+          <a class="btn primary" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_amd64.deb">
+            <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+            <span><b>Download for Ubuntu 24.04</b><small>.deb package, version 2.2.0, 7.0 MB</small></span>
+          </a>
+          <a class="btn" href="../../#how-it-works">
+            <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg>
+            <span><b>How it works</b><small>Checks, limits and what it changes</small></span>
+          </a>
+        </div>
+      </div>
+
+      <h2 id="related">Related guides</h2>
+      <ul class="links">
+        <li><a href="../ethernet-and-wifi-at-the-same-time/"><b>Using Ethernet and Wi-Fi at the same time</b><span>Which one your computer uses, on Windows, Ubuntu and Mac.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="../switch-ethernet-to-wifi-windows/"><b>Switch from Ethernet to Wi-Fi automatically on Windows</b><span>Interface metrics and the manual fix on Windows 11 and 10.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="../../"><span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>LAN Wi-Fi Manager</a>
+    </div>
+    <div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager">GitHub</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">Releases</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">Report a problem</a></li>
+          <li><a href="../">Guides</a></li>
+          <li><a href="../../#privacy">Privacy</a></li>
+        </ul>
+      </nav>
+      <p>Freeware by <a href="https://github.com/bilal-nasr">bilal-nasr</a>, © 2026. Not affiliated with Microsoft, Canonical or Apple. Ubuntu is a trademark of Canonical. Set in Overpass under the <a href="../../fonts/OFL.txt">SIL Open Font License 1.1</a>.</p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAN Wi-Fi Manager: auto-switch from Ethernet to Wi-Fi</title>
+<meta name="description" content="Free for Windows and Ubuntu, with a macOS preview. When Ethernet is connected but has no internet, it moves traffic to Wi-Fi, then back when the LAN recovers.">
+<link rel="canonical" href="https://bilal-nasr.github.io/lan-wifi-manager/">
+<!-- google-site-verification: paste the Search Console meta tag here, for example
+     <meta name="google-site-verification" content="..."> (URL-prefix property, HTML tag method) -->
+<meta name="theme-color" content="#111318">
+<meta name="color-scheme" content="light dark">
+<meta name="author" content="bilal-nasr">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LAN Wi-Fi Manager">
+<meta property="og:title" content="LAN Wi-Fi Manager: auto-switch from Ethernet to Wi-Fi">
+<meta property="og:description" content="Free for Windows and Ubuntu, with a macOS preview. When Ethernet is connected but has no internet, it moves traffic to Wi-Fi, then back when the LAN recovers.">
+<meta property="og:url" content="https://bilal-nasr.github.io/lan-wifi-manager/">
+<meta property="og:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LAN Wi-Fi Manager: auto-switch from Ethernet to Wi-Fi">
+<meta name="twitter:description" content="Free for Windows and Ubuntu, with a macOS preview. When Ethernet is connected but has no internet, it moves traffic to Wi-Fi, then back when the LAN recovers.">
+<meta name="twitter:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta name="twitter:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="alternate" type="text/plain" href="llms-full.txt" title="LAN Wi-Fi Manager: the whole site (home page and guides) as one Markdown file">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer",
+      "name": "bilal-nasr",
+      "url": "https://github.com/bilal-nasr",
+      "sameAs": ["https://github.com/bilal-nasr"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#website",
+      "name": "LAN Wi-Fi Manager",
+      "url": "https://bilal-nasr.github.io/lan-wifi-manager/",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer" },
+      "about": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#app" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#app",
+      "name": "LAN Wi-Fi Manager",
+      "description": "LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers. It helps when your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router.",
+      "url": "https://bilal-nasr.github.io/lan-wifi-manager/",
+      "sameAs": ["https://github.com/bilal-nasr/lan-wifi-manager"],
+      "applicationCategory": "UtilitiesApplication",
+      "applicationSubCategory": "Network failover",
+      "operatingSystem": "Windows 10, Windows 11, Ubuntu 24.04, macOS 13.6 or later",
+      "softwareVersion": "2.2.0",
+      "datePublished": "2026-09-25",
+      "dateModified": "2026-10-08",
+      "releaseNotes": "https://github.com/bilal-nasr/lan-wifi-manager/releases/tag/v2.2.0",
+      "license": "https://github.com/bilal-nasr/lan-wifi-manager#license",
+      "isAccessibleForFree": true,
+      "image": "https://bilal-nasr.github.io/lan-wifi-manager/og-image.png",
+      "screenshot": [
+        "https://bilal-nasr.github.io/lan-wifi-manager/status.png",
+        "https://bilal-nasr.github.io/lan-wifi-manager/resources.png",
+        "https://bilal-nasr.github.io/lan-wifi-manager/settings.png"
+      ],
+      "downloadUrl": [
+        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager.exe",
+        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_amd64.deb",
+        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_universal.dmg"
+      ],
+      "author": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer" },
+      "publisher": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Can I use Ethernet and Wi-Fi at the same time?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Windows, Ubuntu and macOS all let both connections stay connected at once. The system sends your traffic through the one with the better priority, which is normally Ethernet, and the other one waits. Being connected to both does not add their speeds together; that needs bonding software or a router built for it." } },
+    { "@type": "Question", "name": "Why does my computer keep using Ethernet when it has no internet?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The system ranks connections by their link, not by whether the internet behind them works. While the cable is plugged in and the adapter has an address, Ethernet keeps the better priority, even if the router, the modem or the network behind the cable has stopped working. Windows may show \"No internet\" and still send traffic over Ethernet. LAN Wi-Fi Manager tests the internet through each adapter and moves the priority to Wi-Fi when the LAN stops answering. That helps when your Wi-Fi reaches the internet a different way, such as a phone hotspot, a second provider or a separate router. If both come from the same router and that router or the provider is down, there is nothing better to switch to." } },
+    { "@type": "Question", "name": "How quickly does it switch to Wi-Fi?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Usually within about a minute of the LAN failing, with the default settings. It checks every 30 seconds and switches after 2 bad checks in a row. In Settings, Monitoring, you can check as often as every 5 seconds and switch after a single bad check. The switch itself is immediate, because the Wi-Fi is already connected." } },
+    { "@type": "Question", "name": "Does it switch back to Ethernet when the LAN works again?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. In Auto mode it moves back once the LAN has passed 2 good checks in a row (you can change the number), so a flaky cable does not make it bounce back and forth. When you quit, it hands the priority back to the system: on Windows it turns automatic metrics back on (so a metric you had set by hand is not kept), and on Ubuntu and macOS it restores the original order. That happens only while the setting to give the priority back on quit is on, which it is by default." } },
+    { "@type": "Question", "name": "Does it combine Ethernet and Wi-Fi for more speed?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It is failover, not bonding. Your traffic goes through one connection at a time, and the app only decides which one." } },
+    { "@type": "Question", "name": "Do calls and downloads survive a switch?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not reliably. The app changes route priority only; it does not bond links, proxy or tunnel traffic. Connections that were open on the dead link usually have to reconnect; it doesn't keep sessions alive the way a bonding VPN can." } },
+    { "@type": "Question", "name": "What counts as a bad connection?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A link is Down when none of its pings get a reply, and Degraded at 50% packet loss or more, average latency above 500 ms, or when DNS does not answer through it. A jitter limit can be turned on too. A Down LAN always leads to a switch. A Degraded LAN leads to a switch only when the Wi-Fi is Good. All of these limits can be changed in Settings." } },
+    { "@type": "Question", "name": "Why does Windows SmartScreen warn about it, and is it safe?",
+      "acceptedAnswer": { "@type": "Answer", "text": "SmartScreen shows \"Windows protected your PC\" because the exe is not code-signed, as it does for most new unsigned programs. Whether to trust it is your call: it is free but closed source, so you are trusting the author; there is no telemetry and it only contacts the addresses listed under Privacy. You can compare the file's SHA-256 hash with the one listed on this page. To run it, choose More info, then Run anyway. The app asks for administrator rights because changing which connection Windows prefers needs them." } },
+    { "@type": "Question", "name": "My Wi-Fi turns off when the cable is plugged in. Will it still work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, but switching is instant only when the Wi-Fi is already connected. On Windows, if the Wi-Fi is disconnected when a switch is needed, the app first tries to connect it to your saved network (choose it in Settings, Adapters). Some Wi-Fi drivers have an option such as \"Disable Upon Wired Connect\", and the Windows policy \"Minimize the number of simultaneous connections\" can also keep Wi-Fi disconnected while Ethernet is up; turn those off if you can." } },
+    { "@type": "Question", "name": "Does it work on Ubuntu and macOS?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes on Ubuntu 24.04; on macOS 13.6 or later it is a preview that has not yet been tested on a real Mac. Ubuntu gets a .deb package; it switches through NetworkManager and needs no password for the signed-in user. The macOS build is not signed or notarized, so macOS asks you to allow it under Privacy & Security, and switching needs a small helper that is installed once with an administrator password." } },
+    { "@type": "Question", "name": "Does it collect any data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. There is no telemetry and no account. The app only contacts your ping targets (8.8.8.8 and 1.1.1.1 by default), your adapters' own DNS servers for the DNS check, and the GitHub API to look for updates, which you can turn off. Settings and logs stay on your computer." } },
+    { "@type": "Question", "name": "Is it free and open source?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It is free, but not open source. You can use it at home or at work, with no ads or paid tier. The source code is not published, and the GitHub repository holds only the README, screenshots, this website and releases." } }
+  ]
+}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="band">
+  <div class="wrap band-in">
+    <a class="brand" href="./" aria-label="LAN Wi-Fi Manager, home">
+      <span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>
+      LAN Wi-Fi Manager
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#download">Download</a></li>
+        <li class="nav-opt"><a href="#compare">Compare</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="guides/">Guides</a></li>
+      </ul>
+    </nav>
+    <div class="band-right">
+      <span class="ver">v2.2.0</span>
+      <a class="band-cta" href="#download"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Download</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="title">
+    <div class="wrap">
+      <div class="log">
+        <div class="log-head" aria-hidden="true">
+          <span class="pad"></span><span class="pad"></span><span class="pad"></span>
+          <span class="colh"><i class="bullet lan">L</i>LAN</span>
+          <span class="colh"><i class="bullet wifi">W</i>Wi-Fi</span>
+        </div>
+
+        <div class="row note mobile-hide" aria-hidden="true">
+          <span class="t">09:41<span class="s">:00</span></span><span class="spine" style="--i:0"></span>
+          <p class="msg">LAN online (8 ms, 0% loss)</p>
+          <span class="m">8<em>ms</em></span><span class="m">21<em>ms</em></span>
+        </div>
+
+        <div class="row down lead">
+          <span class="t" aria-hidden="true">09:41<span class="s">:30</span></span><span class="spine" style="--i:1"></span>
+          <div class="msg">
+            <h1 id="title">Ethernet connected but no internet? <span class="tail">Switch to <span class="nw">Wi-Fi</span> automatically.</span></h1>
+            <p class="lede">LAN Wi-Fi Manager tests the internet through your cable and through your Wi-Fi. When the LAN stops working, your computer moves to Wi-Fi by itself, and <b>moves back when the LAN is healthy again</b>. Free for Windows and Ubuntu, with a macOS preview.</p>
+          </div>
+          <span class="m no" aria-hidden="true">no reply</span><span class="m" aria-hidden="true">22<em>ms</em></span>
+        </div>
+
+        <div class="row warn down" aria-hidden="true">
+          <span class="t">09:42<span class="s">:00</span></span><span class="spine" style="--i:2"></span>
+          <p class="msg">LAN check failed (2/2): no internet (no ping replies)</p>
+          <span class="m no">no reply</span><span class="m">20<em>ms</em></span>
+        </div>
+
+        <div class="row switch to-wifi on-wifi">
+          <span class="t" aria-hidden="true">09:42<span class="s">:00</span></span><span class="spine" style="--i:3"></span>
+          <div class="msg">
+            <strong>LAN is down - switched to Wi-Fi</strong>
+            <p>The cable stays plugged in and both adapters stay connected. Only the route priority changed, so the switch is instant.</p>
+          </div>
+          <span class="m idle" aria-hidden="true">standby</span><span class="m" aria-hidden="true">20<em>ms</em></span>
+        </div>
+
+        <div class="row cta on-wifi">
+          <span class="t"></span><span class="spine" style="--i:4"></span>
+          <div class="msg">
+            <div class="get" aria-label="Download version 2.2.0" role="group">
+              <a class="btn primary" data-os="win" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager.exe">
+                <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+                <span><b>Windows 10 and 11</b><small>Portable .exe, 1.0 MB</small></span>
+              </a>
+              <a class="btn" data-os="linux" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_amd64.deb">
+                <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+                <span><b>Ubuntu 24.04</b><small>.deb package, 7.0 MB</small></span>
+              </a>
+              <a class="btn" data-os="mac" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_universal.dmg">
+                <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+                <span><b>macOS 13.6+ (preview)</b><small>Universal .dmg, 10.8 MB</small></span>
+              </a>
+            </div>
+            <p class="get-meta">Version 2.2.0<span class="dot" aria-hidden="true">·</span>8 October 2026<span class="dot" aria-hidden="true">·</span>Free, no account<span class="dot" aria-hidden="true">·</span><a href="#download">Install notes and checksums</a></p>
+          </div>
+          <span class="m" aria-hidden="true"></span><span class="m" aria-hidden="true"></span>
+        </div>
+
+        <div class="row note on-wifi mobile-hide" aria-hidden="true">
+          <span class="t">10:15<span class="s">:30</span></span><span class="spine" style="--i:5"></span>
+          <p class="msg">LAN healthy again (1/2)</p>
+          <span class="m">9<em>ms</em></span><span class="m">22<em>ms</em></span>
+        </div>
+
+        <div class="row switch to-lan">
+          <span class="t" aria-hidden="true">10:16<span class="s">:00</span></span><span class="spine" style="--i:6"></span>
+          <div class="msg">
+            <strong>LAN restored - switched back to LAN</strong>
+            <p>When the cable's internet answers again, traffic returns to it. Quit the app and the system's own priority comes back.</p>
+          </div>
+          <span class="m" aria-hidden="true">8<em>ms</em></span><span class="m idle" aria-hidden="true">standby</span>
+        </div>
+        <div class="row end" aria-hidden="true"><span class="t"></span><span class="spine" style="--i:7"></span><span class="msg"></span><span class="m"></span><span class="m"></span></div>
+      </div>
+      <p class="hero-foot">An example of one failover with the default settings, using the app's own log messages. Times and values are illustrative.</p>
+    </div>
+  </section>
+
+  <section class="section" id="at-a-glance" aria-labelledby="h-glance">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-glance">At a glance</h2>
+        <p>LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time.</p>
+      </header>
+      <div class="board-body">
+        <table class="table glance" aria-labelledby="h-glance">
+          <tbody>
+            <tr><th scope="row">Name</th><td>LAN Wi-Fi Manager</td></tr>
+            <tr><th scope="row">What it does</th><td>Automatic Ethernet-to-Wi-Fi failover. It tests the internet through each adapter, makes Wi-Fi the preferred route when the LAN fails or gets poor, and switches back when the LAN recovers. Both adapters stay connected.</td></tr>
+            <tr><th scope="row">When it helps</th><td>When your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router. It doesn't combine the two connections.</td></tr>
+            <tr><th scope="row">Systems</th><td>Windows 10 and 11. Ubuntu 24.04. macOS 13.6 or later as a preview, not yet tested on a real Mac.</td></tr>
+            <tr><th scope="row">Price</th><td>Free for personal and work use. No ads, no paid tier, no account.</td></tr>
+            <tr><th scope="row">Licence</th><td>Freeware, closed source. Please don't redistribute modified copies.</td></tr>
+            <tr><th scope="row">Latest version</th><td>2.2.0, released <time datetime="2026-10-08">8 October 2026</time> (<a href="https://github.com/bilal-nasr/lan-wifi-manager/releases/tag/v2.2.0">release notes</a>). First public release: 1.5.0, <time datetime="2026-09-25">25 September 2026</time>.</td></tr>
+            <tr><th scope="row">Files</th><td>Windows: portable .exe, 1.0 MB, not code-signed. Ubuntu: .deb package, 7.0 MB. macOS: universal .dmg, 10.8 MB, not signed or notarized.</td></tr>
+            <tr><th scope="row">Privacy</th><td>No telemetry. It contacts only your ping targets, your adapters' DNS servers, and the GitHub API to check for updates, which you can turn off.</td></tr>
+            <tr><th scope="row">Developer</th><td><a href="https://github.com/bilal-nasr">bilal-nasr</a> on GitHub. Questions and bug reports go to <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">GitHub issues</a>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works" aria-labelledby="h-how">
+    <div class="wrap board">
+      <header>
+        <div class="bullets" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></div>
+        <h2 id="h-how">How it keeps you online</h2>
+        <p>Your computer is plugged in by cable and connected to Wi-Fi at the same time. The app watches both and decides which one should carry your traffic.</p>
+        <p>It helps when your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router. If both come from the same router and that router or the provider is down, there is nothing better to switch to.</p>
+      </header>
+      <div class="board-body">
+        <figure class="strip">
+          <div class="strip-scroll" tabindex="0" role="region" aria-label="Route map example, scrolls sideways on small screens">
+          <svg viewBox="0 0 960 240" role="img" aria-labelledby="strip-t strip-d">
+            <title id="strip-t">Route map of a failover</title>
+            <desc id="strip-d">Two horizontal lines, LAN in green on top and Wi-Fi in blue below, with a check every 30 seconds. Traffic runs on LAN until the LAN stops replying at 2:00. After the second failed check, at 2:30, a vertical interchange moves traffic down to Wi-Fi. The LAN answers again at 4:00, and after its second good check, at 4:30, traffic moves back up to LAN.</desc>
+            <g aria-hidden="true">
+              <!-- line names -->
+              <circle class="bl" cx="20" cy="80" r="14"/><text class="bi" x="20" y="85" text-anchor="middle">L</text>
+              <text class="name" x="42" y="86">LAN</text>
+              <circle class="bw" cx="20" cy="170" r="14"/><text class="bi" x="20" y="175" text-anchor="middle">W</text>
+              <text class="name" x="42" y="176">Wi-Fi</text>
+              <!-- standby tracks -->
+              <line class="wifi-stb" x1="110" y1="170" x2="457.5" y2="170" stroke-width="3.5"/>
+              <line class="wifi-stb" x1="727.5" y1="170" x2="940" y2="170" stroke-width="3.5"/>
+              <line class="lan-stb" x1="626" y1="80" x2="727.5" y2="80" stroke-width="3.5"/>
+              <!-- the LAN with no replies -->
+              <line class="down-trk" x1="342" y1="80" x2="626" y2="80" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 9"/>
+              <!-- running lines -->
+              <line class="lan-run" x1="110" y1="80" x2="342" y2="80" stroke-width="8"/>
+              <line class="wifi-run" x1="457.5" y1="170" x2="727.5" y2="170" stroke-width="8"/>
+              <line class="lan-run" x1="727.5" y1="80" x2="940" y2="80" stroke-width="8"/>
+              <!-- termini -->
+              <line class="lan-run" x1="110" y1="68" x2="110" y2="92" stroke-width="4"/>
+              <line class="wifi-stb" x1="110" y1="160" x2="110" y2="180" stroke-width="3.5"/>
+              <!-- stations: LAN ticks above, Wi-Fi ticks below -->
+              <g class="tick-lan" stroke-width="3">
+                <line x1="120" y1="62" x2="120" y2="76"/><line x1="187.5" y1="62" x2="187.5" y2="76"/><line x1="255" y1="62" x2="255" y2="76"/><line x1="322.5" y1="62" x2="322.5" y2="76"/>
+                <line x1="795" y1="62" x2="795" y2="76"/><line x1="862.5" y1="62" x2="862.5" y2="76"/>
+              </g>
+              <g class="tick-lan" stroke-width="3" opacity=".42"><line x1="660" y1="66" x2="660" y2="78"/></g>
+              <g class="tick-wifi" stroke-width="3" opacity=".42">
+                <line x1="120" y1="172" x2="120" y2="184"/><line x1="187.5" y1="172" x2="187.5" y2="184"/><line x1="255" y1="172" x2="255" y2="184"/><line x1="322.5" y1="172" x2="322.5" y2="184"/><line x1="390" y1="172" x2="390" y2="184"/>
+                <line x1="795" y1="172" x2="795" y2="184"/><line x1="862.5" y1="172" x2="862.5" y2="184"/><line x1="930" y1="172" x2="930" y2="184"/>
+              </g>
+              <g class="tick-wifi" stroke-width="3">
+                <line x1="525" y1="174" x2="525" y2="188"/><line x1="592.5" y1="174" x2="592.5" y2="188"/><line x1="660" y1="174" x2="660" y2="188"/>
+              </g>
+              <!-- no replies -->
+              <g class="ring-down" stroke-width="2.5">
+                <circle cx="390" cy="80" r="5.5"/><circle cx="525" cy="80" r="5.5"/><circle cx="592.5" cy="80" r="5.5"/>
+              </g>
+              <!-- interchanges -->
+              <rect class="cap" x="450.5" y="80" width="14" height="90" rx="7" stroke-width="3.5"/>
+              <path d="M457.5 102V148M453.5 143l4 5 4-5" fill="none" stroke="currentColor" class="arrow" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"/>
+              <circle class="ring-x" cx="457.5" cy="80" r="8.5" stroke-width="3.5"/>
+              <circle class="ring-x" cx="457.5" cy="170" r="8.5" stroke-width="3.5"/>
+              <rect class="cap" x="720.5" y="80" width="14" height="90" rx="7" stroke-width="3.5"/>
+              <path d="M727.5 148V102M723.5 107l4-5 4 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"/>
+              <circle class="ring-x" cx="727.5" cy="80" r="8.5" stroke-width="3.5"/>
+              <circle class="ring-x" cx="727.5" cy="170" r="8.5" stroke-width="3.5"/>
+              <!-- the train, heading for the next check -->
+              <circle class="train-o" cx="912" cy="80" r="9.5" stroke-width="3"/>
+              <circle class="train-i" cx="912" cy="80" r="4.5"/>
+              <!-- labels -->
+              <text class="lbl" x="457.5" y="28" text-anchor="middle">2:30 to Wi-Fi</text>
+              <text class="lbl2" x="457.5" y="45" text-anchor="middle">2nd bad check</text>
+              <text class="lbl" x="727.5" y="28" text-anchor="middle">4:30 to LAN</text>
+              <text class="lbl2" x="727.5" y="45" text-anchor="middle">2nd good check</text>
+              <!-- time axis -->
+              <g class="axis" text-anchor="middle">
+                <text x="120" y="222">0:00</text><text x="255" y="222">1:00</text><text x="390" y="222">2:00</text><text x="525" y="222">3:00</text><text x="660" y="222">4:00</text><text x="795" y="222">5:00</text><text x="930" y="222">6:00</text>
+              </g>
+            </g>
+          </svg>
+          </div>
+          <figcaption>Checks every 30 seconds (the default). Thick line: carrying traffic. Thin line: standby. Red rings: no replies. The LAN stops answering at 2:00, the route moves to Wi-Fi at the second bad check, and moves back after two good LAN checks.</figcaption>
+        </figure>
+
+        <dl class="facts">
+          <div>
+            <dt>It tests each link through its own adapter</dt>
+            <dd>Every 30 seconds by default it sends 5 pings through the LAN adapter and 5 through the Wi-Fi adapter, to 8.8.8.8 or 1.1.1.1 (you can change the targets), and checks that DNS answers on each.</dd>
+          </div>
+          <div>
+            <dt>It rates each link Good, Degraded or Down</dt>
+            <dd><b>Down</b> means no replies at all. <b>Degraded</b> means 50% packet loss or more, average latency above 500 ms, or DNS not answering. A jitter limit can be turned on too, and every limit can be changed.</dd>
+          </div>
+          <div>
+            <dt>It switches only when that helps</dt>
+            <dd>A dead LAN moves your traffic to Wi-Fi after 2 bad checks in a row. A poor LAN moves it only if the Wi-Fi is actually better. After 2 good LAN checks in a row it moves back.</dd>
+          </div>
+          <div>
+            <dt>It changes priority, not connections</dt>
+            <dd>Both adapters stay connected the whole time. The app only changes which one your system prefers, so the switch is instant, and it hands the priority back to the system when you quit. You can also pick <b>Use LAN</b>, <b>Use Wi-Fi</b> or <b>Toggle</b> by hand.</dd>
+          </div>
+        </dl>
+
+        <table class="table stack mech">
+          <caption>What it changes on each system</caption>
+          <thead><tr><th scope="col">System</th><th scope="col">How it switches</th><th scope="col">What you need</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Windows 10 and 11</th><td data-h="How it switches">Sets the interface metric of the two adapters; quitting turns automatic metrics back on.</td><td data-h="What you need">Administrator rights (the app asks when it starts).</td></tr>
+            <tr><th scope="row">Ubuntu 24.04</th><td data-h="How it switches">Lowers the Wi-Fi device's IPv4 route metric through NetworkManager (IPv6 is left alone). The change is temporary: a reboot undoes it.</td><td data-h="What you need">Nothing extra. NetworkManager allows it for the signed-in user.</td></tr>
+            <tr><th scope="row">macOS 13.6+</th><td data-h="How it switches">Swaps the order of the Ethernet and Wi-Fi network services.</td><td data-h="What you need">A small helper, installed once with an administrator password.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="screens" aria-labelledby="h-screens">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-screens">See which line carries your traffic</h2>
+        <p>The Status tab draws your two connections as a route map: the thick line is the one in use, and every switch is marked where it happened.</p>
+      </header>
+      <div class="board-body shots">
+        <figure class="shot wide">
+          <a class="shot-link" href="status.png"><img src="status.png" width="1100" height="769" loading="lazy" decoding="async" alt="Status tab of LAN Wi-Fi Manager. The heading says LAN, carrying traffic at 7 ms with Wi-Fi on standby at 23 ms. A route map shows the LAN line losing replies, an interchange down to Wi-Fi, and an interchange back to LAN. Below it, a latency chart for both links, with the time spent on Wi-Fi shaded."></a>
+          <figcaption>Status: latency, packet loss, jitter and DNS for both links, the mode (Auto failover, Use LAN, Use Wi-Fi), Toggle and Check now.</figcaption>
+        </figure>
+        <figure class="shot">
+          <a class="shot-link" href="resources.png"><img src="resources.png" width="1100" height="900" loading="lazy" decoding="async" alt="Resources tab showing a CPU core strip and history chart, then panels for memory and swap, GPU, network and disk, each with a 60-second history."></a>
+          <figcaption>Resources: CPU, memory, GPU, network and disk, with a process list and End task.</figcaption>
+        </figure>
+        <figure class="shot">
+          <a class="shot-link" href="settings.png"><img src="settings.png" width="1100" height="820" loading="lazy" decoding="async" alt="Settings tab with sections for Monitoring, Connection quality, Adapters, Speed in the bar, Startup and closing, and Updates and about."></a>
+          <figcaption>Settings: check interval, when to switch, quality limits, adapters, startup and updates.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features" aria-labelledby="h-features">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-features">What else it does</h2>
+        <p>It sits in the tray on Windows and in the top bar on Ubuntu and macOS, so you can leave it running.</p>
+      </header>
+      <dl class="board-body facts two">
+        <div><dt>Live speed in the taskbar</dt><dd>Download and upload speed next to the tray icons on Windows, and in the top bar on Ubuntu and macOS.</dd></div>
+        <div><dt>Resources tab</dt><dd>A CPU core strip and history, plus memory and swap, GPU, network and disk. Each opens a process list where you can end a task.</dd></div>
+        <div><dt>Manual modes</dt><dd>Use LAN, Use Wi-Fi and Toggle, from the window or from the tray or top-bar icon.</dd></div>
+        <div><dt>Runs in the background</dt><dd>Closes to the tray or top bar, starts at login if you want, notifies you when it switches, and keeps a daily log.</dd></div>
+        <div><dt>Explains every switch</dt><dd>The log tab lists each check that failed and why, for example packet loss or DNS not answering.</dd></div>
+        <div><dt>Updates</dt><dd>The Windows app updates itself. On Ubuntu and macOS it tells you when a new version is out and opens the download. You can turn update checks off.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="download" aria-labelledby="h-download">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-download">Download and install</h2>
+        <p>Version 2.2.0, released 8 October 2026. Free for personal and work use. Older versions and release notes are on the <a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">releases page</a>.</p>
+      </header>
+      <div class="board-body">
+        <div class="os" id="windows">
+          <h3>Windows 10 and 11<small>Portable, nothing to install</small></h3>
+          <div class="os-body">
+            <div class="file">
+              <a class="btn primary" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager.exe"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager.exe</a>
+              <span class="size">1.0 MB</span>
+            </div>
+            <ol>
+              <li>Run the file. It is a single portable program.</li>
+              <li>Allow administrator rights. Windows only lets admin programs change which connection it prefers.</li>
+              <li>If SmartScreen says <b>Windows protected your PC</b>, choose <b>More info</b>, then <b>Run anyway</b>.</li>
+            </ol>
+            <p class="note"><b>Why the warning:</b> the exe is not code-signed, so Windows doesn't recognise the publisher. If you want to check the file, compare its hash: in PowerShell, <code class="nw">Get-FileHash .\LanWifiManager.exe</code>.</p>
+            <p class="hash">SHA-256 <code>34a23cb292fff5443c71e789f59b09b45faf2f337bbac76dcaab0e06f55bb23a</code></p>
+          </div>
+        </div>
+
+        <div class="os" id="ubuntu">
+          <h3>Ubuntu 24.04<small>64-bit .deb package</small></h3>
+          <div class="os-body">
+            <div class="file">
+              <a class="btn" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_amd64.deb"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager_2.2.0_amd64.deb</a>
+              <span class="size">7.0 MB</span>
+            </div>
+            <ol>
+              <li>In the folder you downloaded it to, install it:</li>
+            </ol>
+            <div class="code"><pre><code>sudo apt install ./LanWifiManager_2.2.0_amd64.deb</code></pre></div>
+            <ol start="2">
+              <li>Open <b>LAN Wi-Fi Manager</b> from the app list. Switching needs no password: NetworkManager allows it for the signed-in user.</li>
+            </ol>
+            <p class="hash">SHA-256 <code>f5ebcc0d155e167046ddcbcd1cc4baf435429bb62c33aab0e0feac2e9476ee64</code></p>
+          </div>
+        </div>
+
+        <div class="os" id="macos">
+          <h3>macOS 13.6 or later<small>Universal .dmg, Apple silicon and Intel</small><span class="tag">Preview: not yet tested on a real Mac</span></h3>
+          <div class="os-body">
+            <div class="file">
+              <a class="btn" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_universal.dmg"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager_2.2.0_universal.dmg</a>
+              <span class="size">10.8 MB</span>
+            </div>
+            <ol>
+              <li>Drag the app to <b>Applications</b> and open it.</li>
+              <li>When macOS says it <b>could not verify</b> the app, choose <b>Done</b>, then go to <b>System Settings → Privacy &amp; Security</b> and choose <b>Open Anyway</b>. You need to do this again after each update.</li>
+              <li>Allow the one-time switching helper when the app asks. This needs an administrator account.</li>
+            </ol>
+            <p class="note"><b>Why the warning:</b> the app is not signed or notarized by Apple. Monitoring and the speed display work without the helper; only switching needs it. Please report anything that doesn't work in an <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">issue</a>.</p>
+            <p class="hash">SHA-256 <code>f8752bddc85452346eac26d614838fe0efd8676b6dde32253a1fe6291b913069</code></p>
+          </div>
+        </div>
+
+        <p class="note">GitHub adds <b>Source code (zip / tar.gz)</b> links to every release. They contain the README, the screenshots and this website, not the app's source code, which isn't published. Download the file for your system instead.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="compare" aria-labelledby="h-compare">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-compare">Compared with what you already have</h2>
+        <p>Your system can already prefer one connection over another. The gap is the moment the cable stays connected but the internet behind it stops working.</p>
+      </header>
+      <div class="board-body">
+        <table class="table stack">
+          <thead><tr><th scope="col">Option</th><th scope="col">What it does well</th><th scope="col">Where it falls short for this job</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Windows automatic metric</th><td data-h="What it does well">Prefers Ethernet while its link is up, and moves to Wi-Fi when the cable is unplugged or the link drops.</td><td data-h="Where it falls short">When the cable stays connected but the router, the modem or the network behind the cable stops working, Windows may keep sending traffic over Ethernet. It doesn't compare the quality of the two links.</td></tr>
+            <tr><th scope="row">Setting metrics by hand</th><td data-h="What it does well"><code>Set-NetIPInterface</code>, or the adapter's IPv4 settings, makes the connection you choose the preferred one.</td><td data-h="Where it falls short">It is a fixed setting. It doesn't notice a failure and doesn't switch back when the LAN recovers. <a href="guides/switch-ethernet-to-wifi-windows/">How to do it</a>.</td></tr>
+            <tr><th scope="row">NetworkManager on Ubuntu</th><td data-h="What it does well">When its connectivity check is on, it can lower the priority of a device without internet, so the other one takes over.</td><td data-h="Where it falls short">The check runs every 5 minutes by default, is one web request, sees only "internet or not", and doesn't show which link carries traffic. <a href="guides/ubuntu-ethernet-wifi-failover/">Details</a>.</td></tr>
+            <tr><th scope="row">macOS service order</th><td data-h="What it does well">Uses the first service in your list and falls back to the next one when the link drops.</td><td data-h="Where it falls short">When Ethernet keeps its address but the internet behind it is gone, people report the fallback is slow or doesn't happen.</td></tr>
+            <tr><th scope="row">Dual-WAN router</th><td data-h="What it does well">Fails over for every device on the network, without software on each computer.</td><td data-h="Where it falls short">Costs a router and setup time, and both internet connections have to reach that router (wired, USB modem or Wi-Fi uplink, depending on the model).</td></tr>
+            <tr><th scope="row">Speedify</th><td data-h="What it does well">A bonding VPN service (a free tier with a data cap, paid plans for regular use) that fails over smoothly on many platforms.</td><td data-h="Where it falls short">Your traffic goes through Speedify's servers, and regular use needs a paid plan.</td></tr>
+            <tr class="self"><th scope="row">LAN Wi-Fi Manager</th><td data-h="What it does well">Tests both links through their own adapters, switches by route priority with both kept connected, and switches back. Free, no account, no proxy.</td><td data-h="Where it falls short">Only helps when the Wi-Fi has its own route to the internet (hotspot, second provider or separate router). One computer at a time. With default settings a switch takes up to about a minute. No bonding. Closed source and unsigned, and the macOS build is untested.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="privacy" aria-labelledby="h-privacy">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-privacy">Privacy</h2>
+        <p>No telemetry, no accounts, no data collection.</p>
+      </header>
+      <div class="board-body prose">
+        <p>The app only connects to:</p>
+        <ul>
+          <li><b>Your ping targets</b>, 8.8.8.8 and 1.1.1.1 by default (you can change them), to test each connection.</li>
+          <li><b>Your adapters' own DNS servers</b>, for the DNS check.</li>
+          <li><b>The GitHub API</b>, to check for updates. You can turn this off in Settings.</li>
+        </ul>
+        <p>Settings and logs stay on your computer: <code>%AppData%\LanWifiManager</code> on Windows, <code>~/.config/LanWifiManager</code> on Ubuntu, and <code>~/Library/Application Support/LanWifiManager</code> on macOS.</p>
+        <p><b>Wi-Fi name on Windows.</b> Since Windows 11 24H2, reading the Wi-Fi network's name and signal counts as location access, so it appears as "Network Command Shell" under Privacy &amp; security → Location. The app asks first, reads those details only while its window is open (plus once at startup and when reconnecting Wi-Fi), never reads GPS or coordinates, and sends nothing anywhere. You can change this in Settings → Adapters.</p>
+        <p><b>The macOS helper</b> can only swap the order of two network services. To remove it, use Settings → macOS → Remove, or run <code>sudo rm -f /private/etc/sudoers.d/lanwifimanager /Library/PrivilegedHelperTools/lanwifi-helper</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="h-faq">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-faq">Questions</h2>
+        <p>Something else? Ask in a <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">GitHub issue</a>.</p>
+      </header>
+      <div class="board-body faq">
+        <details open>
+          <summary>Can I use Ethernet and Wi-Fi at the same time?</summary>
+          <div class="a"><p>Yes. Windows, Ubuntu and macOS all let both connections stay connected at once. The system sends your traffic through the one with the better priority, which is normally Ethernet, and the other one waits. Being connected to both does not add their speeds together; that needs bonding software or a router built for it. <a href="guides/ethernet-and-wifi-at-the-same-time/">More on how the priority works</a>.</p></div>
+        </details>
+        <details>
+          <summary>Why does my computer keep using Ethernet when it has no internet?</summary>
+          <div class="a"><p>The system ranks connections by their link, not by whether the internet behind them works. While the cable is plugged in and the adapter has an address, Ethernet keeps the better priority, even if the router, the modem or the network behind the cable has stopped working. Windows may show "No internet" and still send traffic over Ethernet. LAN Wi-Fi Manager tests the internet through each adapter and moves the priority to Wi-Fi when the LAN stops answering. That helps when your Wi-Fi reaches the internet a different way, such as a phone hotspot, a second provider or a separate router. If both come from the same router and that router or the provider is down, there is nothing better to switch to.</p></div>
+        </details>
+        <details>
+          <summary>How quickly does it switch to Wi-Fi?</summary>
+          <div class="a"><p>Usually within about a minute of the LAN failing, with the default settings. It checks every 30 seconds and switches after 2 bad checks in a row. In Settings, Monitoring, you can check as often as every 5 seconds and switch after a single bad check. The switch itself is immediate, because the Wi-Fi is already connected.</p></div>
+        </details>
+        <details>
+          <summary>Does it switch back to Ethernet when the LAN works again?</summary>
+          <div class="a"><p>Yes. In Auto mode it moves back once the LAN has passed 2 good checks in a row (you can change the number), so a flaky cable does not make it bounce back and forth. When you quit, it hands the priority back to the system: on Windows it turns automatic metrics back on (so a metric you had set by hand is not kept), and on Ubuntu and macOS it restores the original order. That happens only while the setting to give the priority back on quit is on, which it is by default.</p></div>
+        </details>
+        <details>
+          <summary>Does it combine Ethernet and Wi-Fi for more speed?</summary>
+          <div class="a"><p>No. It is failover, not bonding. Your traffic goes through one connection at a time, and the app only decides which one.</p></div>
+        </details>
+        <details>
+          <summary>Do calls and downloads survive a switch?</summary>
+          <div class="a"><p>Not reliably. The app changes route priority only; it does not bond links, proxy or tunnel traffic. Connections that were open on the dead link usually have to reconnect; it doesn't keep sessions alive the way a bonding VPN can.</p></div>
+        </details>
+        <details>
+          <summary>What counts as a bad connection?</summary>
+          <div class="a"><p>A link is Down when none of its pings get a reply, and Degraded at 50% packet loss or more, average latency above 500 ms, or when DNS does not answer through it. A jitter limit can be turned on too. A Down LAN always leads to a switch. A Degraded LAN leads to a switch only when the Wi-Fi is Good. All of these limits can be changed in Settings.</p></div>
+        </details>
+        <details>
+          <summary>Why does Windows SmartScreen warn about it, and is it safe?</summary>
+          <div class="a"><p>SmartScreen shows "Windows protected your PC" because the exe is not code-signed, as it does for most new unsigned programs. Whether to trust it is your call: it is free but closed source, so you are trusting the author; there is no telemetry and it only contacts the addresses listed under Privacy. You can compare the file's SHA-256 hash with the one listed on this page. To run it, choose More info, then Run anyway. The app asks for administrator rights because changing which connection Windows prefers needs them.</p></div>
+        </details>
+        <details>
+          <summary>My Wi-Fi turns off when the cable is plugged in. Will it still work?</summary>
+          <div class="a"><p>Yes, but switching is instant only when the Wi-Fi is already connected. On Windows, if the Wi-Fi is disconnected when a switch is needed, the app first tries to connect it to your saved network (choose it in Settings, Adapters). Some Wi-Fi drivers have an option such as "Disable Upon Wired Connect", and the Windows policy "Minimize the number of simultaneous connections" can also keep Wi-Fi disconnected while Ethernet is up; turn those off if you can.</p></div>
+        </details>
+        <details>
+          <summary>Does it work on Ubuntu and macOS?</summary>
+          <div class="a"><p>Yes on Ubuntu 24.04; on macOS 13.6 or later it is a preview that has not yet been tested on a real Mac. Ubuntu gets a .deb package; it switches through NetworkManager and needs no password for the signed-in user. The macOS build is not signed or notarized, so macOS asks you to allow it under Privacy &amp; Security, and switching needs a small helper that is installed once with an administrator password.</p></div>
+        </details>
+        <details>
+          <summary>Does it collect any data?</summary>
+          <div class="a"><p>No. There is no telemetry and no account. The app only contacts your ping targets (8.8.8.8 and 1.1.1.1 by default), your adapters' own DNS servers for the DNS check, and the GitHub API to look for updates, which you can turn off. Settings and logs stay on your computer.</p></div>
+        </details>
+        <details>
+          <summary>Is it free and open source?</summary>
+          <div class="a"><p>It is free, but not open source. You can use it at home or at work, with no ads or paid tier. The source code is not published, and the GitHub repository holds only the README, screenshots, this website and releases.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="guides" aria-labelledby="h-guides">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-guides">Guides</h2>
+        <p>How to do it by hand, what the built-in settings can and can't do, and where the app fits.</p>
+      </header>
+      <ul class="board-body links">
+        <li><a href="guides/switch-ethernet-to-wifi-windows/"><b>Switch from Ethernet to Wi-Fi automatically on Windows 11 and 10</b><span>Why Windows stays on a dead cable, how interface metrics work, and the manual fix.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="guides/ubuntu-ethernet-wifi-failover/"><b>Ubuntu: use Wi-Fi when Ethernet has no internet</b><span>NetworkManager route metrics, <code>nmcli</code>, and the connectivity check.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="guides/ethernet-and-wifi-at-the-same-time/"><b>Using Ethernet and Wi-Fi at the same time</b><span>Which one your computer uses, and how to prioritize Ethernet over Wi-Fi on Windows, Ubuntu and Mac.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>LAN Wi-Fi Manager</a>
+    </div>
+    <div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager">GitHub</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">Releases</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">Report a problem</a></li>
+          <li><a href="guides/">Guides</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+        </ul>
+      </nav>
+      <p>Freeware by <a href="https://github.com/bilal-nasr">bilal-nasr</a>, © 2026. Free to use personally or at work; please don't redistribute modified copies. Not affiliated with Microsoft, Canonical or Apple. Set in Overpass, © 2021 The Overpass Project Authors, under the <a href="fonts/OFL.txt">SIL Open Font License 1.1</a>.</p>
+    </div>
+  </div>
+</footer>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

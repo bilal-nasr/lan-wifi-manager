@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Using Ethernet and Wi-Fi at the same time</title>
+<meta name="description" content="Can you use Ethernet and Wi-Fi at the same time? Which one is used, why speeds don't add up, and how to prioritize Ethernet on Windows, Ubuntu and Mac.">
+<link rel="canonical" href="https://bilal-nasr.github.io/lan-wifi-manager/guides/ethernet-and-wifi-at-the-same-time/">
+<meta name="theme-color" content="#111318">
+<meta name="color-scheme" content="light dark">
+<meta name="author" content="bilal-nasr">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="LAN Wi-Fi Manager">
+<meta property="og:title" content="Using Ethernet and Wi-Fi at the same time">
+<meta property="og:description" content="Can you use Ethernet and Wi-Fi at the same time? Which one is used, why speeds don't add up, and how to prioritize Ethernet on Windows, Ubuntu and Mac.">
+<meta property="og:url" content="https://bilal-nasr.github.io/lan-wifi-manager/guides/ethernet-and-wifi-at-the-same-time/">
+<meta property="og:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Using Ethernet and Wi-Fi at the same time">
+<meta name="twitter:description" content="Can you use Ethernet and Wi-Fi at the same time? Which one is used, why speeds don't add up, and how to prioritize Ethernet on Windows, Ubuntu and Mac.">
+<meta name="twitter:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta name="twitter:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "LAN Wi-Fi Manager", "item": "https://bilal-nasr.github.io/lan-wifi-manager/" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://bilal-nasr.github.io/lan-wifi-manager/guides/" },
+    { "@type": "ListItem", "position": 3, "name": "Ethernet and Wi-Fi at the same time", "item": "https://bilal-nasr.github.io/lan-wifi-manager/guides/ethernet-and-wifi-at-the-same-time/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Using Ethernet and Wi-Fi at the same time",
+  "description": "Which connection your computer uses when Ethernet and Wi-Fi are both connected, why speeds don't add up, and how to prioritize Ethernet on Windows, Ubuntu and Mac.",
+  "datePublished": "2026-10-08",
+  "dateModified": "2026-10-08",
+  "author": { "@type": "Person", "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer", "name": "bilal-nasr", "url": "https://github.com/bilal-nasr", "sameAs": ["https://github.com/bilal-nasr"] },
+  "publisher": { "@type": "Person", "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer", "name": "bilal-nasr", "url": "https://github.com/bilal-nasr", "sameAs": ["https://github.com/bilal-nasr"] },
+  "image": "https://bilal-nasr.github.io/lan-wifi-manager/og-image.png",
+  "mainEntityOfPage": "https://bilal-nasr.github.io/lan-wifi-manager/guides/ethernet-and-wifi-at-the-same-time/"
+}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="band">
+  <div class="wrap band-in">
+    <a class="brand" href="../../" aria-label="LAN Wi-Fi Manager, home">
+      <span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>
+      LAN Wi-Fi Manager
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="../../#how-it-works">How it works</a></li>
+        <li><a href="../../#download">Download</a></li>
+        <li class="nav-opt"><a href="../../#compare">Compare</a></li>
+        <li><a href="../../#faq">FAQ</a></li>
+        <li><a href="../" aria-current="true">Guides</a></li>
+      </ul>
+    </nav>
+    <div class="band-right">
+      <span class="ver">v2.2.0</span>
+      <a class="band-cta" href="../../#download"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Download</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../">Home</a></li>
+      <li><a href="../">Guides</a></li>
+      <li><span aria-current="page">Ethernet and Wi-Fi together</span></li>
+    </ol>
+  </nav>
+
+  <header class="page-head">
+    <h1>Using Ethernet and Wi-Fi at the same time</h1>
+    <p class="lede">Plugging in a cable doesn't have to turn your Wi-Fi off. Here is what your computer does with two connections, whether it's worth keeping both, and how to choose which one comes first on Windows, Ubuntu and macOS.</p>
+    <p class="meta">Last updated <time datetime="2026-10-08">8 October 2026</time><span class="dot" aria-hidden="true">·</span>Windows 10 and 11, Ubuntu 24.04, macOS</p>
+  </header>
+
+  <div class="article">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-in">
+        <b>On this page</b>
+        <ol>
+          <li><a href="#can-i">Can you use both?</a></li>
+          <li><a href="#which">Which one is used</a></li>
+          <li><a href="#speed">Do the speeds add up?</a></li>
+          <li><a href="#worth-it">Is it worth keeping both?</a></li>
+          <li><a href="#windows">Prioritize Ethernet on Windows</a></li>
+          <li><a href="#ubuntu">Prioritize Ethernet on Ubuntu</a></li>
+          <li><a href="#mac">Prioritize Ethernet on a Mac</a></li>
+          <li><a href="#failover">When the first one fails</a></li>
+        </ol>
+      </div>
+    </aside>
+
+    <article class="prose">
+      <h2 id="can-i">Can you use Ethernet and Wi-Fi at the same time?</h2>
+      <div class="short">
+        <p>Yes. Windows, Ubuntu and macOS can all stay connected to a cable and to Wi-Fi at once. Your internet traffic goes through one of them, the one ranked first, and the other waits as a ready backup. Being connected to both does not double your speed.</p>
+      </div>
+
+      <h2 id="which">Which one your computer uses</h2>
+      <p>It uses the connection with the best route priority, which is normally Ethernet on Windows, Ubuntu and macOS. Each connection that can reach the internet gets a <b>default route</b>, and each route has a priority:</p>
+      <ul>
+        <li><b>Windows</b> uses the <b>metric</b>: the lowest number wins. It's automatic by default and based on link speed, so a wired connection usually gets a lower number than Wi-Fi.</li>
+        <li><b>Ubuntu</b> (NetworkManager) also uses a route metric: Ethernet gets 100 and Wi-Fi 600 by default.</li>
+        <li><b>macOS</b> uses the <b>service order</b> in Network settings: the first connected service in the list is used.</li>
+      </ul>
+      <p>So in all three, Ethernet normally comes first. Traffic to devices on a local network can still go out through the adapter that is attached to that network, for example to reach a printer that's only on Wi-Fi.</p>
+
+      <h2 id="speed">Do the speeds add up?</h2>
+      <p>No. A single download, a game or a video call uses one route at a time. Combining two connections into one faster link is called <b>bonding</b> or load balancing, and it needs either a router that does it or a service that tunnels your traffic through its own servers. Windows, Ubuntu and macOS don't set this up for you out of the box.</p>
+
+      <h2 id="worth-it">Is it worth keeping both connected?</h2>
+      <p>Usually yes, if your Wi-Fi can reach the internet in a different way than your cable (a phone hotspot, a second provider, a separate access point) or if you just want a backup that is already connected. The cost is small: the Wi-Fi adapter stays on and keeps its address.</p>
+      <p>What it won't do by itself is switch when the cable is still plugged in but its internet has stopped. The system ranks connections by link, not by whether the internet behind them works. See <a href="#failover">when the first one fails</a>.</p>
+
+      <h2 id="windows">Prioritize Ethernet over Wi-Fi on Windows 11 and 10</h2>
+      <p>Windows already prefers Ethernet unless someone changed the metrics. To check, run in PowerShell:</p>
+      <div class="code"><pre><code>Get-NetIPInterface -AddressFamily IPv4 | Sort-Object InterfaceMetric |
+  Format-Table InterfaceAlias, InterfaceMetric, AutomaticMetric</code></pre></div>
+      <p>If Wi-Fi is on top, use one of these two options in PowerShell as administrator, with your own adapter names.</p>
+      <p>To let Windows rank them again:</p>
+      <div class="code"><pre><code>Set-NetIPInterface -InterfaceAlias "Ethernet" -AutomaticMetric Enabled
+Set-NetIPInterface -InterfaceAlias "Wi-Fi" -AutomaticMetric Enabled</code></pre></div>
+      <p>Or to fix the order yourself (the lower number wins):</p>
+      <div class="code"><pre><code>Set-NetIPInterface -InterfaceAlias "Ethernet" -AutomaticMetric Disabled -InterfaceMetric 5
+Set-NetIPInterface -InterfaceAlias "Wi-Fi" -AutomaticMetric Disabled -InterfaceMetric 100</code></pre></div>
+      <p>The Settings app has no metric option; the graphical way is <code>ncpa.cpl</code> → adapter <b>Properties</b> → <b>Internet Protocol Version 4</b> → <b>Properties</b> → <b>Advanced</b> → <b>Interface metric</b>. More detail, including why a metric change sometimes seems to do nothing, is in the <a href="../switch-ethernet-to-wifi-windows/">Windows guide</a>.</p>
+
+      <h2 id="ubuntu">Prioritize Ethernet over Wi-Fi on Ubuntu</h2>
+      <p>Give the Ethernet profile a lower route metric than the Wi-Fi profile; the lower number wins. Check the current routes with <code>ip route show default</code>. To fix the order in the saved profiles (use names from <code>nmcli connection show</code>):</p>
+      <div class="code"><pre><code>nmcli connection modify "Wired connection 1" ipv4.route-metric 100
+nmcli connection modify "MyWiFi" ipv4.route-metric 600
+nmcli connection up "Wired connection 1"</code></pre></div>
+      <p>The <a href="../ubuntu-ethernet-wifi-failover/">Ubuntu guide</a> covers temporary changes and NetworkManager's connectivity check.</p>
+
+      <h2 id="mac">Prioritize Ethernet over Wi-Fi on a Mac</h2>
+      <p>Move Ethernet above Wi-Fi in the network service order. In System Settings:</p>
+      <ol>
+        <li>Open <b>System Settings → Network</b>.</li>
+        <li>Below the list of services, open the <b>…</b> (action) menu and choose <b>Set Service Order</b>.</li>
+        <li>Drag your Ethernet service above Wi-Fi and choose <b>OK</b>.</li>
+      </ol>
+      <p>In Terminal you can see the order with:</p>
+      <div class="code"><pre><code>networksetup -listnetworkserviceorder</code></pre></div>
+      <p>and set it with <code>sudo networksetup -ordernetworkservices</code>, which needs every service name in the new order, exactly as the list shows them. An Ethernet adapter may appear under its own name, such as a USB LAN adapter.</p>
+      <p>macOS falls back to the next service when the first one's link goes down. If the Ethernet keeps its address but the internet behind it is gone, people report that the fallback is slow or doesn't happen.</p>
+
+      <h2 id="failover">When the first one fails but stays connected</h2>
+      <p>Usually nothing changes on its own, because the cable's link is still up; Ubuntu's connectivity check is a partial exception. All three systems handle an unplugged cable well. The hard case is a cable that stays connected while the router or provider behind it has stopped working: the link is up, so the ranking doesn't change. Fixing that needs something that tests the internet through each connection and changes the order when the first one stops answering, then changes it back.</p>
+      <p>LAN Wi-Fi Manager does that on Windows, Ubuntu and macOS (macOS as an untested preview). It keeps both connections up, pings through each adapter every 30 seconds by default, moves your traffic to Wi-Fi after 2 bad checks of the LAN, and moves it back after 2 good ones. It changes the same settings described above: the interface metric on Windows, the route metric on Ubuntu and the service order on macOS.</p>
+      <div class="app-box">
+        <h3><span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>LAN Wi-Fi Manager</h3>
+        <p>Free, closed source, no account, version 2.2.0.</p>
+        <div class="get">
+          <a class="btn primary" data-os="win" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager.exe">
+            <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+            <span><b>Windows 10 and 11</b><small>Portable .exe, 1.0 MB</small></span>
+          </a>
+          <a class="btn" data-os="linux" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_amd64.deb">
+            <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+            <span><b>Ubuntu 24.04</b><small>.deb package, 7.0 MB</small></span>
+          </a>
+          <a class="btn" data-os="mac" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_universal.dmg">
+            <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+            <span><b>macOS 13.6+ (preview)</b><small>Universal .dmg, 10.8 MB</small></span>
+          </a>
+        </div>
+        <p class="get-meta"><a href="../../#download">Install notes, SmartScreen and Gatekeeper warnings, checksums</a></p>
+      </div>
+
+      <h2 id="related">Related guides</h2>
+      <ul class="links">
+        <li><a href="../switch-ethernet-to-wifi-windows/"><b>Switch from Ethernet to Wi-Fi automatically on Windows</b><span>Interface metrics and the manual fix on Windows 11 and 10.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="../ubuntu-ethernet-wifi-failover/"><b>Ubuntu: use Wi-Fi when Ethernet has no internet</b><span>NetworkManager route metrics and the connectivity check.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="../../"><span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>LAN Wi-Fi Manager</a>
+    </div>
+    <div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager">GitHub</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">Releases</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">Report a problem</a></li>
+          <li><a href="../">Guides</a></li>
+          <li><a href="../../#privacy">Privacy</a></li>
+        </ul>
+      </nav>
+      <p>Freeware by <a href="https://github.com/bilal-nasr">bilal-nasr</a>, © 2026. Not affiliated with Microsoft, Canonical or Apple. Windows, Ubuntu and macOS are trademarks of their owners. Set in Overpass under the <a href="../../fonts/OFL.txt">SIL Open Font License 1.1</a>.</p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

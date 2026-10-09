@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Switch from Ethernet to Wi-Fi automatically on Windows 11</title>
+<meta name="description" content="Ethernet connected but no internet? Why Windows keeps using the cable, how to set the interface metric by hand, and how to fall back to Wi-Fi by itself.">
+<link rel="canonical" href="https://bilal-nasr.github.io/lan-wifi-manager/guides/switch-ethernet-to-wifi-windows/">
+<meta name="theme-color" content="#111318">
+<meta name="color-scheme" content="light dark">
+<meta name="author" content="bilal-nasr">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="LAN Wi-Fi Manager">
+<meta property="og:title" content="Switch from Ethernet to Wi-Fi automatically on Windows 11">
+<meta property="og:description" content="Ethernet connected but no internet? Why Windows keeps using the cable, how to set the interface metric by hand, and how to fall back to Wi-Fi by itself.">
+<meta property="og:url" content="https://bilal-nasr.github.io/lan-wifi-manager/guides/switch-ethernet-to-wifi-windows/">
+<meta property="og:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Switch from Ethernet to Wi-Fi automatically on Windows 11">
+<meta name="twitter:description" content="Ethernet connected but no internet? Why Windows keeps using the cable, how to set the interface metric by hand, and how to fall back to Wi-Fi by itself.">
+<meta name="twitter:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta name="twitter:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "LAN Wi-Fi Manager", "item": "https://bilal-nasr.github.io/lan-wifi-manager/" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://bilal-nasr.github.io/lan-wifi-manager/guides/" },
+    { "@type": "ListItem", "position": 3, "name": "Switch from Ethernet to Wi-Fi on Windows", "item": "https://bilal-nasr.github.io/lan-wifi-manager/guides/switch-ethernet-to-wifi-windows/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Switch from Ethernet to Wi-Fi automatically on Windows 11 and 10",
+  "description": "Why Windows keeps using an Ethernet connection that has no internet, how to change the interface metric by hand, and how to fall back to Wi-Fi automatically.",
+  "datePublished": "2026-10-08",
+  "dateModified": "2026-10-08",
+  "author": { "@type": "Person", "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer", "name": "bilal-nasr", "url": "https://github.com/bilal-nasr", "sameAs": ["https://github.com/bilal-nasr"] },
+  "publisher": { "@type": "Person", "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer", "name": "bilal-nasr", "url": "https://github.com/bilal-nasr", "sameAs": ["https://github.com/bilal-nasr"] },
+  "image": "https://bilal-nasr.github.io/lan-wifi-manager/og-image.png",
+  "mainEntityOfPage": "https://bilal-nasr.github.io/lan-wifi-manager/guides/switch-ethernet-to-wifi-windows/"
+}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="band">
+  <div class="wrap band-in">
+    <a class="brand" href="../../" aria-label="LAN Wi-Fi Manager, home">
+      <span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>
+      LAN Wi-Fi Manager
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="../../#how-it-works">How it works</a></li>
+        <li><a href="../../#download">Download</a></li>
+        <li class="nav-opt"><a href="../../#compare">Compare</a></li>
+        <li><a href="../../#faq">FAQ</a></li>
+        <li><a href="../" aria-current="true">Guides</a></li>
+      </ul>
+    </nav>
+    <div class="band-right">
+      <span class="ver">v2.2.0</span>
+      <a class="band-cta" href="../../#download"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Download</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../">Home</a></li>
+      <li><a href="../">Guides</a></li>
+      <li><span aria-current="page">Windows</span></li>
+    </ol>
+  </nav>
+
+  <header class="page-head">
+    <h1>Switch from Ethernet to Wi-Fi automatically on Windows 11 and 10</h1>
+    <p class="lede">Your PC is plugged in by cable and also connected to Wi-Fi. The cable's internet stops working, but Windows keeps using it. Here is why, how to change it by hand, and what a manual fix can't do.</p>
+    <p class="meta">Last updated <time datetime="2026-10-08">8 October 2026</time><span class="dot" aria-hidden="true">·</span>Windows 10 and 11</p>
+  </header>
+
+  <div class="article">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-in">
+        <b>On this page</b>
+        <ol>
+          <li><a href="#short-answer">The short answer</a></li>
+          <li><a href="#why">Why Windows stays on the cable</a></li>
+          <li><a href="#check">See which connection Windows prefers</a></li>
+          <li><a href="#prefer-wifi">Prefer Wi-Fi by hand</a></li>
+          <li><a href="#not-working">When the metric change seems to do nothing</a></li>
+          <li><a href="#undo">Put it back</a></li>
+          <li><a href="#keep-wifi">Keep Wi-Fi connected</a></li>
+          <li><a href="#automatic">Do it automatically</a></li>
+        </ol>
+      </div>
+    </aside>
+
+    <article class="prose">
+      <h2 id="short-answer">The short answer</h2>
+      <div class="short">
+        <p>Windows has no built-in setting that says "use Wi-Fi when the Ethernet has no internet". It prefers Ethernet whenever the cable's link is up. You can make Wi-Fi preferred by changing the <b>interface metric</b>, but that is a fixed setting: it won't notice the next failure and won't switch back. To switch back and forth by itself, something has to test the internet through each adapter and change the metric for you.</p>
+      </div>
+
+      <h2 id="why">Why Windows stays on a cable with no internet</h2>
+      <p>Windows ranks connections by their link, not by whether the internet behind them works, so a cable that is still plugged in keeps winning.</p>
+      <p>When more than one connection has a route to the internet, Windows sends traffic through the one with the lowest <b>metric</b>. By default the metric is automatic and based on link speed, so a wired adapter almost always gets a lower number than Wi-Fi, and Ethernet wins.</p>
+      <p>If the cable is unplugged, or the link goes down, the Ethernet route disappears and Windows falls back to Wi-Fi straight away. But if the cable stays connected and the router, modem or provider is what stopped working, the Ethernet adapter still has its link and its address. People in this situation commonly report that Windows keeps sending traffic over the cable, or takes a long time to move.</p>
+      <p>The "No internet" label in the taskbar comes from Windows' connectivity check. It tells you something is wrong; it is not a failover switch.</p>
+
+      <h2 id="check">See which connection Windows prefers</h2>
+      <p>The adapter with the lowest interface metric carries your traffic. Open <b>PowerShell</b> and list your adapters with their metrics:</p>
+      <div class="code"><pre><code>Get-NetIPInterface -AddressFamily IPv4 |
+  Sort-Object InterfaceMetric |
+  Format-Table InterfaceAlias, InterfaceMetric, AutomaticMetric, ConnectionState</code></pre></div>
+      <p>Note the exact names in <code>InterfaceAlias</code>, for example <code>Ethernet</code>, <code>Ethernet 2</code> or <code>Wi-Fi</code>. You need them below.</p>
+      <p>To see the default routes themselves:</p>
+      <div class="code"><pre><code>Get-NetRoute -DestinationPrefix 0.0.0.0/0</code></pre></div>
+      <p>Windows adds the route's own metric (<code>RouteMetric</code>) to the adapter's metric (<code>ifMetric</code>). The route with the lowest total carries your traffic.</p>
+
+      <h2 id="prefer-wifi">Prefer Wi-Fi by hand</h2>
+      <p>Run PowerShell <b>as administrator</b>, then give Wi-Fi a low metric and Ethernet a high one. Replace the names with yours.</p>
+      <div class="code"><pre><code>Set-NetIPInterface -InterfaceAlias "Wi-Fi" -AutomaticMetric Disabled -InterfaceMetric 5
+Set-NetIPInterface -InterfaceAlias "Ethernet" -AutomaticMetric Disabled -InterfaceMetric 100</code></pre></div>
+      <p>The change takes effect immediately; nothing disconnects. Without <code>-AddressFamily</code>, the commands set both the IPv4 and the IPv6 metric.</p>
+      <p>The same setting exists in the old Control Panel:</p>
+      <ol>
+        <li>Press <b>Win + R</b>, type <code>ncpa.cpl</code> and press Enter.</li>
+        <li>Right-click the adapter, choose <b>Properties</b>, select <b>Internet Protocol Version 4 (TCP/IPv4)</b> and choose <b>Properties</b>.</li>
+        <li>Choose <b>Advanced</b>, untick <b>Automatic metric</b> and type a number in <b>Interface metric</b>.</li>
+        <li>Do the same for <b>Internet Protocol Version 6</b> if your network uses IPv6.</li>
+      </ol>
+
+      <h2 id="not-working">When the metric change seems to do nothing</h2>
+      <p>Usually something else outweighs the new metric: a route metric, IPv6, a reconnect or a VPN. Threads titled "interface metric not working" are common, and these are the usual causes:</p>
+      <ul>
+        <li><b>The route metric is added on top.</b> If one gateway's route has a much higher <code>RouteMetric</code>, a small interface metric difference isn't enough. Compare the totals from <code>Get-NetRoute</code>.</li>
+        <li><b>IPv6 has its own metrics.</b> If you only changed IPv4 and the site is reached over IPv6, the old preference still applies there.</li>
+        <li><b>The adapter reconnected.</b> When an adapter reconnects it gets a fresh default route, which can undo the order you set. Check again after a reconnect or a reboot.</li>
+        <li><b>A VPN is running.</b> VPN adapters often add their own routes with very low metrics, and those win over both.</li>
+      </ul>
+
+      <h2 id="undo">Put it back</h2>
+      <p>To return to Windows' own ranking, turn automatic metrics back on:</p>
+      <div class="code"><pre><code>Set-NetIPInterface -InterfaceAlias "Wi-Fi" -AutomaticMetric Enabled
+Set-NetIPInterface -InterfaceAlias "Ethernet" -AutomaticMetric Enabled</code></pre></div>
+
+      <h2 id="keep-wifi">Keep Wi-Fi connected while the cable is plugged in</h2>
+      <p>Check the Wi-Fi driver option and the Windows policy below, because either one can keep Wi-Fi disconnected while Ethernet is up. A backup only helps if it is ready.</p>
+      <ul>
+        <li><b>The Wi-Fi driver.</b> Some adapters have an option such as <b>Disable Upon Wired Connect</b> under Device Manager → the Wi-Fi adapter → Properties → Advanced. It turns Wi-Fi off whenever a cable is connected, which is the opposite of what you want here.</li>
+        <li><b>Windows Connection Manager.</b> The policy <b>Minimize the number of simultaneous connections to the Internet or a Windows Domain</b> (Group Policy: Computer Configuration → Administrative Templates → Network → Windows Connection Manager) controls whether Windows keeps Wi-Fi connected next to Ethernet. If your Wi-Fi keeps dropping when you plug in a cable, check this policy.</li>
+      </ul>
+
+      <h2 id="automatic">What a manual fix can't do, and doing it automatically</h2>
+      <p>A metric set by hand can't notice a failure or switch back; that needs something that tests each adapter and changes the metric for you. People handle that with scheduled scripts that ping and rewrite the metrics, which works but takes care to get right (testing through each adapter separately, not flapping, restoring the original state).</p>
+      <p>That is the job LAN Wi-Fi Manager does:</p>
+      <ul>
+        <li>Every 30 seconds by default, it pings the internet through the Ethernet adapter and through the Wi-Fi adapter separately, and checks DNS on each.</li>
+        <li>After 2 bad LAN checks in a row it sets the metrics so Wi-Fi is preferred (the same <code>Set-NetIPInterface</code> change as above). A LAN that is only slow or lossy is left alone unless the Wi-Fi is actually better.</li>
+        <li>After 2 good LAN checks it moves back, and when you quit it turns automatic metrics back on (so a metric you had set by hand is not kept).</li>
+        <li>If the Wi-Fi is disconnected when it's needed, it first tries to connect it to your saved network.</li>
+      </ul>
+      <div class="app-box">
+        <h3><span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>LAN Wi-Fi Manager for Windows</h3>
+        <p>Free, closed source, portable, no account. It needs administrator rights, and SmartScreen will warn you because the exe isn't code-signed (<b>More info → Run anyway</b>).</p>
+        <div class="get">
+          <a class="btn primary" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager.exe">
+            <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+            <span><b>Download for Windows 10 and 11</b><small>LanWifiManager.exe, version 2.2.0, 1.0 MB</small></span>
+          </a>
+          <a class="btn" href="../../#how-it-works">
+            <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg>
+            <span><b>How it works</b><small>Checks, limits and what it changes</small></span>
+          </a>
+        </div>
+      </div>
+
+      <h2 id="related">Related guides</h2>
+      <ul class="links">
+        <li><a href="../ethernet-and-wifi-at-the-same-time/"><b>Using Ethernet and Wi-Fi at the same time</b><span>Which one your computer uses, and how to prioritize Ethernet over Wi-Fi.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="../ubuntu-ethernet-wifi-failover/"><b>Ubuntu: use Wi-Fi when Ethernet has no internet</b><span>NetworkManager route metrics and the connectivity check.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="../../"><span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>LAN Wi-Fi Manager</a>
+    </div>
+    <div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager">GitHub</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">Releases</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">Report a problem</a></li>
+          <li><a href="../">Guides</a></li>
+          <li><a href="../../#privacy">Privacy</a></li>
+        </ul>
+      </nav>
+      <p>Freeware by <a href="https://github.com/bilal-nasr">bilal-nasr</a>, © 2026. Not affiliated with Microsoft, Canonical or Apple. Windows is a trademark of Microsoft. Set in Overpass under the <a href="../../fonts/OFL.txt">SIL Open Font License 1.1</a>.</p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

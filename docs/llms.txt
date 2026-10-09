@@ -1,0 +1,46 @@
+# LAN Wi-Fi Manager
+
+> LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers.
+
+Key facts, as of 8 October 2026:
+
+- Latest version: 2.2.0, released 2026-10-08. First public release: 1.5.0, 2026-09-25.
+- Systems: Windows 10 and 11 (portable .exe, 1.0 MB, needs administrator rights, not code-signed); Ubuntu 24.04 (.deb, 7.0 MB); macOS 13.6 or later (universal .dmg, 10.8 MB, a preview that has not yet been tested on a real Mac, not signed or notarized).
+- Price and licence: free for personal and work use; freeware, closed source. No ads, no paid tier, no account.
+- Privacy: no telemetry. It contacts only your ping targets (8.8.8.8 and 1.1.1.1 by default), your adapters' DNS servers, and the GitHub API to check for updates, which can be turned off.
+- Limits: switching only helps when the Wi-Fi has its own route to the internet (a phone hotspot, a second provider or a separate router). It is failover, not bonding: one connection at a time, no speed gain, no proxy or VPN.
+- Developer: bilal-nasr (https://github.com/bilal-nasr). There are no ratings, reviews or press coverage yet.
+
+## Website
+
+- [Home page](https://bilal-nasr.github.io/lan-wifi-manager/): what it does, how it works, screenshots, download and install notes with SHA-256 checksums, comparison with built-in options, privacy and FAQ
+- [How it works](https://bilal-nasr.github.io/lan-wifi-manager/#how-it-works): the checks, the Good / Degraded / Down limits, and what it changes on each system
+- [Comparison](https://bilal-nasr.github.io/lan-wifi-manager/#compare): against Windows automatic metrics, manual metrics, NetworkManager, macOS service order, a dual-WAN router and Speedify
+- [Privacy](https://bilal-nasr.github.io/lan-wifi-manager/#privacy): what the app connects to and where it keeps settings and logs
+- [FAQ](https://bilal-nasr.github.io/lan-wifi-manager/#faq): 12 questions, including speed of switching, SmartScreen and whether it is open source
+- [Full content as Markdown](https://bilal-nasr.github.io/lan-wifi-manager/llms-full.txt): the home page and all guides in one plain Markdown file
+
+## Guides
+
+- [Switch from Ethernet to Wi-Fi automatically on Windows 11 and 10](https://bilal-nasr.github.io/lan-wifi-manager/guides/switch-ethernet-to-wifi-windows/): why Windows stays on a cable with no internet, interface metrics in PowerShell, the manual fix and how to undo it
+- [Ubuntu: use Wi-Fi when Ethernet has no internet](https://bilal-nasr.github.io/lan-wifi-manager/guides/ubuntu-ethernet-wifi-failover/): NetworkManager route metrics, `nmcli` changes, and what the connectivity check does
+- [Using Ethernet and Wi-Fi at the same time](https://bilal-nasr.github.io/lan-wifi-manager/guides/ethernet-and-wifi-at-the-same-time/): which connection is used, why speeds don't add up, and how to prioritise Ethernet on Windows, Ubuntu and macOS
+- [All guides](https://bilal-nasr.github.io/lan-wifi-manager/guides/): index page
+
+## Download
+
+- [Latest release](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest): release notes and all files for the current version
+- [Windows 10 and 11, LanWifiManager.exe](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest/download/LanWifiManager.exe): portable, 1.0 MB in 2.2.0; SmartScreen warns because it is not code-signed (More info, then Run anyway)
+- [Ubuntu 24.04, LanWifiManager_2.2.0_amd64.deb](https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_amd64.deb): 7.0 MB; install with `sudo apt install ./LanWifiManager_2.2.0_amd64.deb`
+- [macOS 13.6 or later, LanWifiManager_2.2.0_universal.dmg](https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.2.0/LanWifiManager_2.2.0_universal.dmg): 10.8 MB, preview; allow it under System Settings, Privacy & Security, Open Anyway
+
+## Project
+
+- [GitHub repository](https://github.com/bilal-nasr/lan-wifi-manager): README, screenshots, this website and releases (the source code is not published)
+- [Issues](https://github.com/bilal-nasr/lan-wifi-manager/issues): bug reports and questions
+- [Developer on GitHub](https://github.com/bilal-nasr): bilal-nasr
+
+## Optional
+
+- [Licence](https://github.com/bilal-nasr/lan-wifi-manager#license): freeware terms in the README
+- [Sitemap](https://bilal-nasr.github.io/lan-wifi-manager/sitemap.xml): the five HTML pages

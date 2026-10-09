@@ -1,16 +1,30 @@
-# LAN Wi-Fi Manager
+# LAN Wi-Fi Manager: automatic Ethernet to Wi-Fi failover
 
-A free app for **Windows, Ubuntu and macOS** that keeps you online when your computer is connected by **both LAN and Wi-Fi**. If the LAN stops working, or just gets bad, it moves your traffic to Wi-Fi. When the LAN is healthy again, it switches back.
+LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers.
+
+It helps when your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router. If both come from the same router and that router or the provider is down, there is nothing better to switch to.
+
+**[Website](https://bilal-nasr.github.io/lan-wifi-manager/)** · **[Download](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest)** · **[FAQ](#faq)**
 
 ![Status tab: the route map shows which connection carries your traffic](docs/status.png)
 
+## At a glance
+
+- **What it does:** tests the internet through the LAN and the Wi-Fi adapter separately (every 30 seconds by default) and changes which one the system prefers. Both stay connected, so the switch is instant.
+- **Systems:** Windows 10 and 11 (portable exe), Ubuntu 24.04 (.deb), macOS 13.6 or later (preview, not yet tested on a real Mac).
+- **Price and licence:** free for personal and work use. Closed source.
+- **What it isn't:** not a VPN, proxy or bonding tool. One connection at a time, so it doesn't add speed.
+- **Privacy:** no telemetry, no account.
+- **Before you run it:** the Windows exe isn't code-signed, so SmartScreen warns, and it needs administrator rights.
+- **Made by:** [bilal-nasr](https://github.com/bilal-nasr).
+
 ## Download
 
-Get the file for your system from the [latest release](../../releases/latest):
+Get the file for your system from the [latest release](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest):
 
 | System | File | Install |
 | --- | --- | --- |
-| **Windows 10 / 11** | `LanWifiManager.exe` | Run it — a single portable file, nothing to install. It asks for administrator rights, because changing which connection Windows prefers needs them. SmartScreen may warn you because the app isn't code-signed: **More info → Run anyway**. |
+| **Windows 10 / 11** | [`LanWifiManager.exe`](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest/download/LanWifiManager.exe) | Run it — a single portable file, nothing to install. It asks for administrator rights, because changing which connection Windows prefers needs them. SmartScreen may warn you because the app isn't code-signed: **More info → Run anyway**. |
 | **Ubuntu 24.04** | `LanWifiManager_<version>_amd64.deb` | In the download folder: `sudo apt install ./LanWifiManager_<version>_amd64.deb`, then open **LAN Wi-Fi Manager** from the app list. No password is needed to switch: NetworkManager allows it for the signed-in user. |
 | **macOS 13.6 or later** *(preview)* | `LanWifiManager_<version>_universal.dmg` | Drag the app to **Applications** and open it. When macOS says it "could not verify" the app: **Done**, then **System Settings → Privacy & Security → Open Anyway** (needed again after every update). Allow the one-time switching helper when the app asks; this needs an administrator account. |
 
@@ -18,7 +32,7 @@ Get the file for your system from the [latest release](../../releases/latest):
 
 The Windows app updates itself (**Settings → Updates & about → Check for updates**). On Ubuntu and macOS the app tells you when a new version is out and opens the download.
 
-> **Note:** GitHub adds **Source code (zip / tar.gz)** links to every release automatically. Here they only contain this README and the screenshots. The app's source code isn't published, so download the file for your system instead.
+> **Note:** GitHub adds **Source code (zip / tar.gz)** links to every release automatically. Here they contain this README, the screenshots and the website, not the app's source code, which isn't published. Download the file for your system instead.
 
 ## Features
 
@@ -32,11 +46,31 @@ The Windows app updates itself (**Settings → Updates & about → Check for upd
 - **Live speed:** download/upload speed next to the tray icons on Windows, and in the top bar (top right) on Ubuntu and macOS.
 - **Runs in the background:** close to the tray / top bar, start at login, notifications, and a daily log file.
 
-![Resources tab](docs/resources.png)
+![Resources tab: CPU per core, memory, GPU, network and disk](docs/resources.png)
 
-Both adapters stay connected the whole time. The app only changes which one the system prefers, so switching is instant: the interface metric on Windows, the Wi-Fi route priority through NetworkManager on Ubuntu, and the network service order on macOS. When you quit, it puts the original preference back.
+Both adapters stay connected the whole time. The app only changes which one the system prefers, so switching is instant: the interface metric on Windows, the Wi-Fi route priority through NetworkManager on Ubuntu, and the network service order on macOS. When you quit, it hands the priority back to the system: on Windows it turns automatic metrics back on, and on Ubuntu and macOS it restores the original order. You can turn this off in Settings.
 
-![Settings](docs/settings.png)
+![Settings: monitoring, connection quality, adapters and startup options](docs/settings.png)
+
+## FAQ
+
+**Can I use Ethernet and Wi-Fi at the same time?**
+Yes. Windows, Ubuntu and macOS all let both stay connected, but they send your traffic through one of them, usually Ethernet. LAN Wi-Fi Manager keeps both connected and decides which one carries the traffic, based on how well each one actually reaches the internet.
+
+**Doesn't Windows already switch to Wi-Fi when Ethernet fails?**
+Only reliably when the Ethernet link itself goes down, for example when the cable is unplugged. If the cable stays connected but the router, the modem or the network behind the cable stops working, Windows may keep sending traffic over Ethernet. This app pings the internet through each adapter, so it notices that case, and a poor connection too. Switching only helps if your Wi-Fi reaches the internet a different way (a phone hotspot, a second provider or a separate router); if both come from the same router and that router or the provider is down, there is nothing better to switch to.
+
+**How is this different from setting the interface metric by hand?**
+A manual metric never changes; the app changes the metric only when the checks call for it. A metric you set by hand (`Set-NetIPInterface`, or unticking "Automatic metric") doesn't react when the LAN fails and doesn't switch back when it recovers. The app also turns automatic metrics back on when you quit (a setting that is on by default), so a metric you set by hand is not kept. On Ubuntu it does the same with the NetworkManager route metric, so you don't need `nmcli` or scripts.
+
+**Does it combine both connections or send my traffic through a server, like Speedify?**
+No. It uses one connection at a time, chosen by the system's own routing, and your traffic goes out directly. It doesn't add speed, and there is no VPN or proxy. Speedify is a bonding VPN service that routes traffic through its own servers; LAN Wi-Fi Manager only changes which local connection your computer prefers.
+
+**Is it free and open source?**
+It's free, but not open source. You can use it at no cost, at home or at work, with no ads or paid tier. The source code isn't published; this repository holds the README, screenshots, website and releases.
+
+**Why does Windows warn me, and why does it need administrator rights?**
+The app isn't code-signed, so SmartScreen shows a warning the first time (**More info → Run anyway**). Administrator rights are needed because Windows only lets administrators change which connection it prefers.
 
 ## Privacy
 
@@ -58,7 +92,7 @@ Settings and logs stay on your computer: `%AppData%\LanWifiManager` on Windows, 
 
 ## Problems or ideas?
 
-Open an [issue](../../issues).
+Open an [issue](https://github.com/bilal-nasr/lan-wifi-manager/issues).
 
 ## License
 

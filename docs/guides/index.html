@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guides: Ethernet, Wi-Fi and network priority</title>
+<meta name="description" content="Guides to using Ethernet and Wi-Fi together: network priority, interface and route metrics, and failing over to Wi-Fi on Windows, Ubuntu and Mac.">
+<link rel="canonical" href="https://bilal-nasr.github.io/lan-wifi-manager/guides/">
+<meta name="theme-color" content="#111318">
+<meta name="color-scheme" content="light dark">
+<meta name="author" content="bilal-nasr">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LAN Wi-Fi Manager">
+<meta property="og:title" content="Guides: Ethernet, Wi-Fi and network priority">
+<meta property="og:description" content="Guides to using Ethernet and Wi-Fi together: network priority, interface and route metrics, and failing over to Wi-Fi on Windows, Ubuntu and Mac.">
+<meta property="og:url" content="https://bilal-nasr.github.io/lan-wifi-manager/guides/">
+<meta property="og:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guides: Ethernet, Wi-Fi and network priority">
+<meta name="twitter:description" content="Guides to using Ethernet and Wi-Fi together: network priority, interface and route metrics, and failing over to Wi-Fi on Windows, Ubuntu and Mac.">
+<meta name="twitter:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta name="twitter:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" href="../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preload" href="../fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "LAN Wi-Fi Manager", "item": "https://bilal-nasr.github.io/lan-wifi-manager/" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://bilal-nasr.github.io/lan-wifi-manager/guides/" }
+  ]
+}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="band">
+  <div class="wrap band-in">
+    <a class="brand" href="../" aria-label="LAN Wi-Fi Manager, home">
+      <span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>
+      LAN Wi-Fi Manager
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="../#how-it-works">How it works</a></li>
+        <li><a href="../#download">Download</a></li>
+        <li class="nav-opt"><a href="../#compare">Compare</a></li>
+        <li><a href="../#faq">FAQ</a></li>
+        <li><a href="./" aria-current="page">Guides</a></li>
+      </ul>
+    </nav>
+    <div class="band-right">
+      <span class="ver">v2.2.0</span>
+      <a class="band-cta" href="../#download"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Download</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../">Home</a></li>
+      <li><span aria-current="page">Guides</span></li>
+    </ol>
+  </nav>
+
+  <header class="page-head">
+    <h1>Guides to Ethernet, Wi-Fi and network priority</h1>
+    <p class="lede">How your computer chooses between a cable and Wi-Fi, how to change that by hand on each system, and what the built-in settings can't do. Each guide shows the manual method first.</p>
+    <p class="meta">Last updated <time datetime="2026-10-08">8 October 2026</time><span class="dot" aria-hidden="true">·</span>3 guides</p>
+  </header>
+
+  <div class="article">
+    <aside class="toc" aria-label="By system">
+      <div class="toc-in">
+        <b>By system</b>
+        <ol>
+          <li><a href="switch-ethernet-to-wifi-windows/">Windows 11 and 10</a></li>
+          <li><a href="ubuntu-ethernet-wifi-failover/">Ubuntu</a></li>
+          <li><a href="ethernet-and-wifi-at-the-same-time/#mac">macOS</a></li>
+        </ol>
+      </div>
+    </aside>
+    <div>
+      <ul class="links">
+        <li><a href="switch-ethernet-to-wifi-windows/"><b>Switch from Ethernet to Wi-Fi automatically on Windows 11 and 10</b><span>Why Windows keeps using a cable with no internet, how to read and change interface metrics with PowerShell, why a metric change sometimes seems to do nothing, and how to keep Wi-Fi connected next to Ethernet.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="ubuntu-ethernet-wifi-failover/"><b>Ubuntu: use Wi-Fi when Ethernet has no internet</b><span>NetworkManager route metrics, temporary and permanent changes with <code>nmcli</code>, and what the connectivity check does and doesn't do.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="ethernet-and-wifi-at-the-same-time/"><b>Using Ethernet and Wi-Fi at the same time</b><span>Whether you can, which one is used, why the speeds don't add up, and how to prioritize Ethernet over Wi-Fi on Windows, Ubuntu and Mac.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i class="bullet lan">L</i><i class="bullet wifi">W</i></span>LAN Wi-Fi Manager</a>
+    </div>
+    <div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager">GitHub</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">Releases</a></li>
+          <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">Report a problem</a></li>
+          <li><a href="../#privacy">Privacy</a></li>
+        </ul>
+      </nav>
+      <p>Freeware by <a href="https://github.com/bilal-nasr">bilal-nasr</a>, © 2026. Not affiliated with Microsoft, Canonical or Apple. Set in Overpass under the <a href="../fonts/OFL.txt">SIL Open Font License 1.1</a>.</p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>
