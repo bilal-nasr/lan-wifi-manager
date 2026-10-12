@@ -43,6 +43,7 @@ The Windows app updates itself (**Settings → Updates & about → Check for upd
 - **Manual modes:** Use LAN, Use Wi-Fi, and Toggle, from the window or the tray / top-bar icon.
 - **Status tab:** a two-line route map showing which connection carries your traffic, with latency, packet loss, jitter and DNS status for both links.
 - **Resources tab:** a CPU core strip and history plot, plus panels for memory and swap, GPU, network and disk, with a process list per resource and **End task**.
+- **Startup apps and Services:** see what starts when you sign in and turn it on or off, and start, stop or restart background services. Protected system services stay locked; on Windows, Store apps are managed by Windows.
 - **Live speed:** download/upload speed next to the tray icons on Windows, and in the top bar (top right) on Ubuntu and macOS.
 - **Runs in the background:** close to the tray / top bar, start at login, notifications, and a daily log file.
 
