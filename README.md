@@ -13,7 +13,8 @@ It helps when your Wi-Fi has its own route to the internet: a phone hotspot, a s
 - **What it does:** tests the internet through the LAN and the Wi-Fi adapter separately (every 30 seconds by default) and changes which one the system prefers. Both stay connected, so the switch is instant.
 - **Systems:** Windows 10 and 11 (portable exe), Ubuntu 24.04 (.deb), macOS 13.6 or later (preview, not yet tested on a real Mac).
 - **Price and licence:** free for personal and work use. Closed source.
-- **What it isn't:** not a VPN, proxy or bonding tool. One connection at a time, so it doesn't add speed.
+- **Split mode:** can also use both lines at once. Apps that follow the system proxy setting send each new connection over the LAN or the Wi-Fi, so several connections together can use both, while a single download stays on one line.
+- **What it isn't:** not a VPN or bonding tool. Failover uses one connection at a time; Split spreads connections over both lines but doesn't merge them into one faster link.
 - **Privacy:** no telemetry, no account.
 - **Before you run it:** the Windows exe isn't code-signed, so SmartScreen warns, and it needs administrator rights.
 - **Made by:** [bilal-nasr](https://github.com/bilal-nasr).
@@ -40,9 +41,11 @@ The Windows app updates itself (**Settings → Updates & about → Check for upd
   - A dead LAN switches to Wi-Fi.
   - A poor LAN switches only if the Wi-Fi is actually better.
   - It switches back once the LAN is healthy again.
-- **Manual modes:** Use LAN, Use Wi-Fi, and Toggle, from the window or the tray / top-bar icon.
+- **Split mode:** browsers and other apps that follow your proxy setting send each new connection over the LAN or the Wi-Fi, by measured speed or evenly, so several downloads together can use both lines. One download, a call or a game still uses one line, and apps that ignore the proxy setting and VPNs aren't covered. A speed test measures each line alone and both together. It only helps when the LAN and the Wi-Fi are separate internet connections, and your own proxy setting comes back when Split stops.
+- **Hotspot tab:** share your computer's internet over Wi-Fi from the tab or the tray: network name, password and band, who is connected, live speed and data used, with an optional limit. Failover pauses while the hotspot holds the Wi-Fi.
+- **Manual modes:** Use LAN, Use Wi-Fi, Toggle and Split, from the window or the tray / top-bar icon.
 - **Status tab:** a two-line route map showing which connection carries your traffic, with latency, packet loss, jitter and DNS status for both links.
-- **Resources tab:** a CPU core strip and history plot, plus panels for memory and swap, GPU, network and disk, with a process list per resource and **End task**.
+- **Resources tab:** a CPU core strip and history plot, plus panels for memory and swap, GPU, network and disk, with a process list per resource and **End task**. **Details** lists every app with its CPU, memory, disk, GPU and network use, with the whole computer's total over each column, like Task Manager.
 - **Startup apps and Services:** see what starts when you sign in and turn it on or off, and start, stop or restart background services. Protected system services stay locked; on Windows, Store apps are managed by Windows.
 - **Live speed:** download/upload speed next to the tray icons on Windows, and in the top bar (top right) on Ubuntu and macOS.
 - **Runs in the background:** close to the tray / top bar, start at login, notifications, and a daily log file.
@@ -65,7 +68,7 @@ Only reliably when the Ethernet link itself goes down, for example when the cabl
 A manual metric never changes; the app changes the metric only when the checks call for it. A metric you set by hand (`Set-NetIPInterface`, or unticking "Automatic metric") doesn't react when the LAN fails and doesn't switch back when it recovers. The app also turns automatic metrics back on when you quit (a setting that is on by default), so a metric you set by hand is not kept. On Ubuntu it does the same with the NetworkManager route metric, so you don't need `nmcli` or scripts.
 
 **Does it combine both connections or send my traffic through a server, like Speedify?**
-No. It uses one connection at a time, chosen by the system's own routing, and your traffic goes out directly. It doesn't add speed, and there is no VPN or proxy. Speedify is a bonding VPN service that routes traffic through its own servers; LAN Wi-Fi Manager only changes which local connection your computer prefers.
+It never sends your traffic through an outside server; it goes out directly over your own connections. In Auto mode it uses one connection at a time, chosen by the system's own routing. In Split mode a local proxy on your computer spreads new connections over both lines, so several together can use both, but each single download, call or game still uses one line: it isn't bonding. Speedify is a bonding VPN service that routes traffic through its own servers.
 
 **Is it free and open source?**
 It's free, but not open source. You can use it at no cost, at home or at work, with no ads or paid tier. The source code isn't published; this repository holds the README, screenshots, website and releases.
@@ -80,6 +83,9 @@ The app has no telemetry, no accounts and no data collection. It only connects t
 - **Your ping targets** (8.8.8.8 and 1.1.1.1 by default, and you can change them), to test each connection.
 - **Your adapters' own DNS servers**, for the DNS check.
 - **The GitHub API**, to check for updates. You can turn this off in Settings.
+- **Only if you use Split:** 1.1.1.1, to see each line's public address, and Cloudflare's speed test servers when you run a speed test.
+
+Split's proxy runs on your computer (127.0.0.1). It sends your traffic straight out over the LAN or the Wi-Fi, never decrypts or stores it, and doesn't route it through any outside server.
 
 Settings and logs stay on your computer: `%AppData%\LanWifiManager` on Windows, `~/.config/LanWifiManager` on Ubuntu, `~/Library/Application Support/LanWifiManager` on macOS.
 
@@ -89,7 +95,7 @@ Settings and logs stay on your computer: `%AppData%\LanWifiManager` on Windows, 
 - Even when allowed, it only reads Wi-Fi details while its window is open, once at startup, and when reconnecting Wi-Fi.
 - It never reads GPS or coordinates, and sends nothing anywhere.
 
-**macOS helper:** switching on macOS needs administrator rights, so the app installs a small helper once (with your password). It can only swap the order of two network services, nothing else. To remove it: **Settings → macOS → Remove…**, or run `sudo rm -f /private/etc/sudoers.d/lanwifimanager /Library/PrivilegedHelperTools/lanwifi-helper`.
+**macOS helper:** switching on macOS needs administrator rights, so the app installs a small helper once (with your password). It can only change the order of the Ethernet and Wi-Fi network services, turn Internet Sharing on and off for the hotspot, and set and restore the proxy on those two services for Split, nothing else. To remove it: **Settings → macOS → Remove…**, or run `sudo rm -f /private/etc/sudoers.d/lanwifimanager /Library/PrivilegedHelperTools/lanwifi-helper`.
 
 ## Problems or ideas?
 
