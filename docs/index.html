@@ -55,16 +55,16 @@
       "@type": "SoftwareApplication",
       "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#app",
       "name": "LAN Wi-Fi Manager",
-      "description": "LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers. It helps when your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router.",
+      "description": "LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers. It helps when your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router. Its Split mode can also use both lines at once: apps that follow the system proxy setting send each new connection over the LAN or the Wi-Fi, so several connections together can use both, while a single download stays on one line.",
       "url": "https://bilal-nasr.github.io/lan-wifi-manager/",
       "sameAs": ["https://github.com/bilal-nasr/lan-wifi-manager"],
       "applicationCategory": "UtilitiesApplication",
       "applicationSubCategory": "Network failover",
       "operatingSystem": "Windows 10, Windows 11, Ubuntu 24.04, macOS 13.6 or later",
-      "softwareVersion": "2.3.0",
+      "softwareVersion": "2.5.0",
       "datePublished": "2026-09-25",
-      "dateModified": "2026-10-12",
-      "releaseNotes": "https://github.com/bilal-nasr/lan-wifi-manager/releases/tag/v2.3.0",
+      "dateModified": "2026-11-01",
+      "releaseNotes": "https://github.com/bilal-nasr/lan-wifi-manager/releases/tag/v2.5.0",
       "license": "https://github.com/bilal-nasr/lan-wifi-manager#license",
       "isAccessibleForFree": true,
       "image": "https://bilal-nasr.github.io/lan-wifi-manager/og-image.png",
@@ -74,9 +74,9 @@
         "https://bilal-nasr.github.io/lan-wifi-manager/settings.png"
       ],
       "downloadUrl": [
-        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager.exe",
-        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager_2.3.0_amd64.deb",
-        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager_2.3.0_universal.dmg"
+        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager.exe",
+        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_amd64.deb",
+        "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_universal.dmg"
       ],
       "author": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer" },
       "publisher": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer" },
@@ -91,7 +91,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "Can I use Ethernet and Wi-Fi at the same time?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Windows, Ubuntu and macOS all let both connections stay connected at once. The system sends your traffic through the one with the better priority, which is normally Ethernet, and the other one waits. Being connected to both does not add their speeds together; that needs bonding software or a router built for it." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Windows, Ubuntu and macOS all let both connections stay connected at once. The system sends your traffic through the one with the better priority, which is normally Ethernet, and the other one waits. Being connected to both does not add their speeds together by itself. LAN Wi-Fi Manager's Split mode can spread new connections over both lines; see the next questions." } },
     { "@type": "Question", "name": "Why does my computer keep using Ethernet when it has no internet?",
       "acceptedAnswer": { "@type": "Answer", "text": "The system ranks connections by their link, not by whether the internet behind them works. While the cable is plugged in and the adapter has an address, Ethernet keeps the better priority, even if the router, the modem or the network behind the cable has stopped working. Windows may show \"No internet\" and still send traffic over Ethernet. LAN Wi-Fi Manager tests the internet through each adapter and moves the priority to Wi-Fi when the LAN stops answering. That helps when your Wi-Fi reaches the internet a different way, such as a phone hotspot, a second provider or a separate router. If both come from the same router and that router or the provider is down, there is nothing better to switch to." } },
     { "@type": "Question", "name": "How quickly does it switch to Wi-Fi?",
@@ -99,9 +99,9 @@
     { "@type": "Question", "name": "Does it switch back to Ethernet when the LAN works again?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes. In Auto mode it moves back once the LAN has passed 2 good checks in a row (you can change the number), so a flaky cable does not make it bounce back and forth. When you quit, it hands the priority back to the system: on Windows it turns automatic metrics back on (so a metric you had set by hand is not kept), and on Ubuntu and macOS it restores the original order. That happens only while the setting to give the priority back on quit is on, which it is by default." } },
     { "@type": "Question", "name": "Does it combine Ethernet and Wi-Fi for more speed?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. It is failover, not bonding. Your traffic goes through one connection at a time, and the app only decides which one." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Partly, in Split mode, and only when the LAN and the Wi-Fi are separate internet connections. Split sets a local proxy on your computer as the system proxy, and sends each new connection from apps that follow that setting, such as browsers, over the LAN or the Wi-Fi, by measured speed or evenly. Several connections together can then use both lines. It is not bonding: a single download, call or game still uses one line, and apps that ignore the proxy setting, VPNs, games and calls keep using the normal route. A built-in speed test shows what each line and both together actually deliver. In Auto mode the app is failover only: one connection at a time." } },
     { "@type": "Question", "name": "Do calls and downloads survive a switch?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Not reliably. The app changes route priority only; it does not bond links, proxy or tunnel traffic. Connections that were open on the dead link usually have to reconnect; it doesn't keep sessions alive the way a bonding VPN can." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Not reliably. Failover changes route priority only and does not tunnel traffic. Connections that were open on the dead link usually have to reconnect; it doesn't keep sessions alive the way a bonding VPN can. In Split mode, new connections go to the line that still works, but connections already open on the failed line still drop." } },
     { "@type": "Question", "name": "What counts as a bad connection?",
       "acceptedAnswer": { "@type": "Answer", "text": "A link is Down when none of its pings get a reply, and Degraded at 50% packet loss or more, average latency above 500 ms, or when DNS does not answer through it. A jitter limit can be turned on too. A Down LAN always leads to a switch. A Degraded LAN leads to a switch only when the Wi-Fi is Good. All of these limits can be changed in Settings." } },
     { "@type": "Question", "name": "Why does Windows SmartScreen warn about it, and is it safe?",
@@ -111,7 +111,7 @@
     { "@type": "Question", "name": "Does it work on Ubuntu and macOS?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes on Ubuntu 24.04; on macOS 13.6 or later it is a preview that has not yet been tested on a real Mac. Ubuntu gets a .deb package; it switches through NetworkManager and needs no password for the signed-in user. The macOS build is not signed or notarized, so macOS asks you to allow it under Privacy & Security, and switching needs a small helper that is installed once with an administrator password." } },
     { "@type": "Question", "name": "Does it collect any data?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. There is no telemetry and no account. The app only contacts your ping targets (8.8.8.8 and 1.1.1.1 by default), your adapters' own DNS servers for the DNS check, and the GitHub API to look for updates, which you can turn off. Settings and logs stay on your computer." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "No. There is no telemetry and no account. The app only contacts your ping targets (8.8.8.8 and 1.1.1.1 by default), your adapters' own DNS servers for the DNS check, and the GitHub API to look for updates, which you can turn off. Only if you use Split, it also asks 1.1.1.1 for each line's public address, and its speed test downloads from Cloudflare's speed test servers. Settings and logs stay on your computer." } },
     { "@type": "Question", "name": "Is it free and open source?",
       "acceptedAnswer": { "@type": "Answer", "text": "It is free, but not open source. You can use it at home or at work, with no ads or paid tier. The source code is not published, and the GitHub repository holds only the README, screenshots, this website and releases." } }
   ]
@@ -141,7 +141,7 @@
       </ul>
     </nav>
     <div class="band-right">
-      <span class="ver">v2.3.0</span>
+      <span class="ver">v2.5.0</span>
       <a class="band-cta" href="#download"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Download</a>
     </div>
   </div>
@@ -191,20 +191,20 @@
           <span class="t"></span><span class="spine" style="--i:4"></span>
           <div class="msg">
             <div class="get" aria-label="Download the latest version" role="group">
-              <a class="btn primary" data-os="win" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager.exe">
+              <a class="btn primary" data-os="win" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager.exe">
                 <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
-                <span><b>Windows 10 and 11</b><small>Portable .exe, 1.1 MB</small></span>
+                <span><b>Windows 10 and 11</b><small>Portable .exe, 1.9 MB</small></span>
               </a>
-              <a class="btn" data-os="linux" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager_2.3.0_amd64.deb">
+              <a class="btn" data-os="linux" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_amd64.deb">
                 <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
-                <span><b>Ubuntu 24.04</b><small>.deb package, 7.2 MB</small></span>
+                <span><b>Ubuntu 24.04</b><small>.deb package, 8.5 MB</small></span>
               </a>
-              <a class="btn" data-os="mac" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager_2.3.0_universal.dmg">
+              <a class="btn" data-os="mac" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_universal.dmg">
                 <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
-                <span><b>macOS 13.6+ (preview)</b><small>Universal .dmg, 11.2 MB</small></span>
+                <span><b>macOS 13.6+ (preview)</b><small>Universal .dmg, 13.7 MB</small></span>
               </a>
             </div>
-            <p class="get-meta">Version 2.3.0 for Windows, Ubuntu and macOS<span class="dot" aria-hidden="true">·</span>12 October 2026<span class="dot" aria-hidden="true">·</span>Free, no account<span class="dot" aria-hidden="true">·</span><a href="#download">Install notes and checksums</a></p>
+            <p class="get-meta">Version 2.5.0 for Windows, Ubuntu and macOS<span class="dot" aria-hidden="true">·</span>1 November 2026<span class="dot" aria-hidden="true">·</span>Free, no account<span class="dot" aria-hidden="true">·</span><a href="#download">Install notes and checksums</a></p>
           </div>
           <span class="m" aria-hidden="true"></span><span class="m" aria-hidden="true"></span>
         </div>
@@ -239,13 +239,13 @@
         <table class="table glance" aria-labelledby="h-glance">
           <tbody>
             <tr><th scope="row">Name</th><td>LAN Wi-Fi Manager</td></tr>
-            <tr><th scope="row">What it does</th><td>Automatic Ethernet-to-Wi-Fi failover. It tests the internet through each adapter, makes Wi-Fi the preferred route when the LAN fails or gets poor, and switches back when the LAN recovers. Both adapters stay connected.</td></tr>
-            <tr><th scope="row">When it helps</th><td>When your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router. It doesn't combine the two connections.</td></tr>
+            <tr><th scope="row">What it does</th><td>Automatic Ethernet-to-Wi-Fi failover. It tests the internet through each adapter, makes Wi-Fi the preferred route when the LAN fails or gets poor, and switches back when the LAN recovers. Both adapters stay connected. Split mode can also use both lines at once, one connection on each.</td></tr>
+            <tr><th scope="row">When it helps</th><td>When your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router. Split spreads new connections over the two lines; it doesn't bond them into one faster link.</td></tr>
             <tr><th scope="row">Systems</th><td>Windows 10 and 11. Ubuntu 24.04. macOS 13.6 or later as a preview, not yet tested on a real Mac.</td></tr>
             <tr><th scope="row">Price</th><td>Free for personal and work use. No ads, no paid tier, no account.</td></tr>
             <tr><th scope="row">Licence</th><td>Freeware, closed source. Please don't redistribute modified copies.</td></tr>
-            <tr><th scope="row">Latest version</th><td>2.3.0 for Windows, Ubuntu and macOS, released <time datetime="2026-10-12">12 October 2026</time> (<a href="https://github.com/bilal-nasr/lan-wifi-manager/releases/tag/v2.3.0">release notes</a>). First public release: 1.5.0, <time datetime="2026-09-25">25 September 2026</time>.</td></tr>
-            <tr><th scope="row">Files</th><td>Windows: portable .exe, 1.1 MB, not code-signed. Ubuntu: .deb package, 7.2 MB. macOS: universal .dmg, 11.2 MB, not signed or notarized.</td></tr>
+            <tr><th scope="row">Latest version</th><td>2.5.0 for Windows, Ubuntu and macOS, released <time datetime="2026-11-01">1 November 2026</time> (<a href="https://github.com/bilal-nasr/lan-wifi-manager/releases/tag/v2.5.0">release notes</a>). First public release: 1.5.0, <time datetime="2026-09-25">25 September 2026</time>.</td></tr>
+            <tr><th scope="row">Files</th><td>Windows: portable .exe, 1.9 MB, not code-signed. Ubuntu: .deb package, 8.5 MB. macOS: universal .dmg, 13.7 MB, not signed or notarized.</td></tr>
             <tr><th scope="row">Privacy</th><td>No telemetry. It contacts only your ping targets, your adapters' DNS servers, and the GitHub API to check for updates, which you can turn off.</td></tr>
             <tr><th scope="row">Developer</th><td><a href="https://github.com/bilal-nasr">bilal-nasr</a> on GitHub. Questions and bug reports go to <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">GitHub issues</a>.</td></tr>
           </tbody>
@@ -346,7 +346,7 @@
           </div>
           <div>
             <dt>It changes priority, not connections</dt>
-            <dd>Both adapters stay connected the whole time. The app only changes which one your system prefers, so the switch is instant, and it hands the priority back to the system when you quit. You can also pick <b>Use LAN</b>, <b>Use Wi-Fi</b> or <b>Toggle</b> by hand.</dd>
+            <dd>Both adapters stay connected the whole time. The app only changes which one your system prefers, so the switch is instant, and it hands the priority back to the system when you quit. You can also pick <b>Use LAN</b>, <b>Use Wi-Fi</b>, <b>Toggle</b> or <b>Split</b> by hand.</dd>
           </div>
         </dl>
 
@@ -393,10 +393,13 @@
         <p>It sits in the tray on Windows and in the top bar on Ubuntu and macOS, so you can leave it running.</p>
       </header>
       <dl class="board-body facts two">
+        <div><dt>Split: both lines at once</dt><dd>Browsers and other apps that follow your proxy setting send each new connection over the LAN or the Wi-Fi, so several downloads together can use both lines. One download, a call or a game still uses one line. A speed test measures each line alone and both together.</dd></div>
+        <div><dt>Hotspot</dt><dd>Share your computer's internet over Wi-Fi from a tab or the tray: network name, password and band, who is connected, live speed and data used, with an optional limit. Failover pauses while the hotspot holds the Wi-Fi. On macOS the name and password are set in System Settings.</dd></div>
         <div><dt>Live speed in the taskbar</dt><dd>Download and upload speed next to the tray icons on Windows, and in the top bar on Ubuntu and macOS.</dd></div>
         <div><dt>Resources tab</dt><dd>A CPU core strip and history, plus memory and swap, GPU, network and disk. Each opens a process list where you can end a task.</dd></div>
+        <div><dt>Details</dt><dd>Every app in one table with its CPU, memory, disk, GPU and network use, and the whole computer's total over each column, like Task Manager. Sort, search, End task, Restart or Open file location.</dd></div>
         <div><dt>Startup apps and Services</dt><dd>See what starts when you sign in and turn it on or off, and start, stop or restart background services. Protected system services stay locked; on Windows, Store apps are managed by Windows.</dd></div>
-        <div><dt>Manual modes</dt><dd>Use LAN, Use Wi-Fi and Toggle, from the window or from the tray or top-bar icon.</dd></div>
+        <div><dt>Manual modes</dt><dd>Use LAN, Use Wi-Fi, Toggle and Split, from the window or from the tray or top-bar icon.</dd></div>
         <div><dt>Runs in the background</dt><dd>Closes to the tray or top bar, starts at login if you want, notifies you when it switches, and keeps a daily log.</dd></div>
         <div><dt>Explains every switch</dt><dd>The log tab lists each check that failed and why, for example packet loss or DNS not answering.</dd></div>
         <div><dt>Updates</dt><dd>The Windows app updates itself. On Ubuntu and macOS it tells you when a new version is out and opens the download. You can turn update checks off.</dd></div>
@@ -408,15 +411,15 @@
     <div class="wrap board">
       <header>
         <h2 id="h-download">Download and install</h2>
-        <p>Version 2.3.0 for Windows, Ubuntu and macOS, released 12 October 2026. Free for personal and work use. Older versions and release notes are on the <a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">releases page</a>.</p>
+        <p>Version 2.5.0 for Windows, Ubuntu and macOS, released 1 November 2026. Free for personal and work use. Older versions and release notes are on the <a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">releases page</a>.</p>
       </header>
       <div class="board-body">
         <div class="os" id="windows">
           <h3>Windows 10 and 11<small>Portable, nothing to install</small></h3>
           <div class="os-body">
             <div class="file">
-              <a class="btn primary" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager.exe"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager.exe</a>
-              <span class="size">1.1 MB</span>
+              <a class="btn primary" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager.exe"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager.exe</a>
+              <span class="size">1.9 MB</span>
             </div>
             <ol>
               <li>Run the file. It is a single portable program.</li>
@@ -424,7 +427,7 @@
               <li>If SmartScreen says <b>Windows protected your PC</b>, choose <b>More info</b>, then <b>Run anyway</b>.</li>
             </ol>
             <p class="note"><b>Why the warning:</b> the exe is not code-signed, so Windows doesn't recognise the publisher. If you want to check the file, compare its hash: in PowerShell, <code class="nw">Get-FileHash .\LanWifiManager.exe</code>.</p>
-            <p class="hash">SHA-256 <code>fa9191ae6f56d038ee2368049e338accef0374c1df7a6d3da1d84f94e40a7ded</code></p>
+            <p class="hash">SHA-256 <code>26f33588bc537967490605a9f128d17eb2ed66a4d5c36684bf76a361d70603c8</code></p>
           </div>
         </div>
 
@@ -432,17 +435,17 @@
           <h3>Ubuntu 24.04<small>64-bit .deb package</small></h3>
           <div class="os-body">
             <div class="file">
-              <a class="btn" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager_2.3.0_amd64.deb"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager_2.3.0_amd64.deb</a>
-              <span class="size">7.2 MB</span>
+              <a class="btn" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_amd64.deb"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager_2.5.0_amd64.deb</a>
+              <span class="size">8.5 MB</span>
             </div>
             <ol>
               <li>In the folder you downloaded it to, install it:</li>
             </ol>
-            <div class="code"><pre><code>sudo apt install ./LanWifiManager_2.3.0_amd64.deb</code></pre></div>
+            <div class="code"><pre><code>sudo apt install ./LanWifiManager_2.5.0_amd64.deb</code></pre></div>
             <ol start="2">
               <li>Open <b>LAN Wi-Fi Manager</b> from the app list. Switching needs no password: NetworkManager allows it for the signed-in user.</li>
             </ol>
-            <p class="hash">SHA-256 <code>2233ff002b2855210624c33d559e9f0f1a7ea455faa72247ba04527e613ad08d</code></p>
+            <p class="hash">SHA-256 <code>e8c996925c879f0fec9c03956149c4c3a095c1d2ab56d62ade2a144983aaf744</code></p>
           </div>
         </div>
 
@@ -450,8 +453,8 @@
           <h3>macOS 13.6 or later<small>Universal .dmg, Apple silicon and Intel</small><span class="tag">Preview: not yet tested on a real Mac</span></h3>
           <div class="os-body">
             <div class="file">
-              <a class="btn" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.3.0/LanWifiManager_2.3.0_universal.dmg"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager_2.3.0_universal.dmg</a>
-              <span class="size">11.2 MB</span>
+              <a class="btn" href="https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_universal.dmg"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>LanWifiManager_2.5.0_universal.dmg</a>
+              <span class="size">13.7 MB</span>
             </div>
             <ol>
               <li>Drag the app to <b>Applications</b> and open it.</li>
@@ -459,7 +462,7 @@
               <li>Allow the one-time switching helper when the app asks. This needs an administrator account.</li>
             </ol>
             <p class="note"><b>Why the warning:</b> the app is not signed or notarized by Apple. Monitoring and the speed display work without the helper; only switching needs it. Please report anything that doesn't work in an <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">issue</a>.</p>
-            <p class="hash">SHA-256 <code>3949ab77d6d89a21b23f783da508a4336d1f4f5250e81a3a9d9643f65891a806</code></p>
+            <p class="hash">SHA-256 <code>ec56c9e285dddefec067a012ccca3192bbb07d550c18022974bcf02ac1c7af16</code></p>
           </div>
         </div>
 
@@ -484,7 +487,7 @@
             <tr><th scope="row">macOS service order</th><td data-h="What it does well">Uses the first service in your list and falls back to the next one when the link drops.</td><td data-h="Where it falls short">When Ethernet keeps its address but the internet behind it is gone, people report the fallback is slow or doesn't happen.</td></tr>
             <tr><th scope="row">Dual-WAN router</th><td data-h="What it does well">Fails over for every device on the network, without software on each computer.</td><td data-h="Where it falls short">Costs a router and setup time, and both internet connections have to reach that router (wired, USB modem or Wi-Fi uplink, depending on the model).</td></tr>
             <tr><th scope="row">Speedify</th><td data-h="What it does well">A bonding VPN service (a free tier with a data cap, paid plans for regular use) that fails over smoothly on many platforms.</td><td data-h="Where it falls short">Your traffic goes through Speedify's servers, and regular use needs a paid plan.</td></tr>
-            <tr class="self"><th scope="row">LAN Wi-Fi Manager</th><td data-h="What it does well">Tests both links through their own adapters, switches by route priority with both kept connected, and switches back. Free, no account, no proxy.</td><td data-h="Where it falls short">Only helps when the Wi-Fi has its own route to the internet (hotspot, second provider or separate router). One computer at a time. With default settings a switch takes up to about a minute. No bonding. Closed source and unsigned, and the macOS build is untested.</td></tr>
+            <tr class="self"><th scope="row">LAN Wi-Fi Manager</th><td data-h="What it does well">Tests both links through their own adapters, switches by route priority with both kept connected, and switches back. Split can also spread new connections over both lines, through a local proxy on your own computer. Free, no account, no outside servers in the path.</td><td data-h="Where it falls short">Only helps when the Wi-Fi has its own route to the internet (hotspot, second provider or separate router). One computer at a time. With default settings a switch takes up to about a minute. No bonding: in Split a single download, call or game stays on one line, and apps that ignore the proxy setting aren't covered. Closed source and unsigned, and the macOS build is untested.</td></tr>
           </tbody>
         </table>
       </div>
@@ -503,10 +506,12 @@
           <li><b>Your ping targets</b>, 8.8.8.8 and 1.1.1.1 by default (you can change them), to test each connection.</li>
           <li><b>Your adapters' own DNS servers</b>, for the DNS check.</li>
           <li><b>The GitHub API</b>, to check for updates. You can turn this off in Settings.</li>
+          <li><b>Only if you use Split:</b> 1.1.1.1, to see each line's public address, and Cloudflare's speed test servers when you run a speed test.</li>
         </ul>
+        <p><b>Split's proxy runs on your computer</b> (127.0.0.1). It sends your traffic straight out over the LAN or the Wi-Fi, never decrypts or stores it, and doesn't route it through any outside server.</p>
         <p>Settings and logs stay on your computer: <code>%AppData%\LanWifiManager</code> on Windows, <code>~/.config/LanWifiManager</code> on Ubuntu, and <code>~/Library/Application Support/LanWifiManager</code> on macOS.</p>
         <p><b>Wi-Fi name on Windows.</b> Since Windows 11 24H2, reading the Wi-Fi network's name and signal counts as location access, so it appears as "Network Command Shell" under Privacy &amp; security → Location. The app asks first, reads those details only while its window is open (plus once at startup and when reconnecting Wi-Fi), never reads GPS or coordinates, and sends nothing anywhere. You can change this in Settings → Adapters.</p>
-        <p><b>The macOS helper</b> can only swap the order of two network services. To remove it, use Settings → macOS → Remove, or run <code>sudo rm -f /private/etc/sudoers.d/lanwifimanager /Library/PrivilegedHelperTools/lanwifi-helper</code>.</p>
+        <p><b>The macOS helper</b> can only change the order of the Ethernet and Wi-Fi network services, turn Internet Sharing on and off for the hotspot, and set and restore the proxy on those two services for Split. To remove it, use Settings → macOS → Remove, or run <code>sudo rm -f /private/etc/sudoers.d/lanwifimanager /Library/PrivilegedHelperTools/lanwifi-helper</code>.</p>
       </div>
     </div>
   </section>
@@ -520,7 +525,7 @@
       <div class="board-body faq">
         <details open>
           <summary>Can I use Ethernet and Wi-Fi at the same time?</summary>
-          <div class="a"><p>Yes. Windows, Ubuntu and macOS all let both connections stay connected at once. The system sends your traffic through the one with the better priority, which is normally Ethernet, and the other one waits. Being connected to both does not add their speeds together; that needs bonding software or a router built for it. <a href="guides/ethernet-and-wifi-at-the-same-time/">More on how the priority works</a>.</p></div>
+          <div class="a"><p>Yes. Windows, Ubuntu and macOS all let both connections stay connected at once. The system sends your traffic through the one with the better priority, which is normally Ethernet, and the other one waits. Being connected to both does not add their speeds together by itself. LAN Wi-Fi Manager's Split mode can spread new connections over both lines; see the next questions. <a href="guides/ethernet-and-wifi-at-the-same-time/">More on how the priority works</a>.</p></div>
         </details>
         <details>
           <summary>Why does my computer keep using Ethernet when it has no internet?</summary>
@@ -536,11 +541,11 @@
         </details>
         <details>
           <summary>Does it combine Ethernet and Wi-Fi for more speed?</summary>
-          <div class="a"><p>No. It is failover, not bonding. Your traffic goes through one connection at a time, and the app only decides which one.</p></div>
+          <div class="a"><p>Partly, in Split mode, and only when the LAN and the Wi-Fi are separate internet connections. Split sets a local proxy on your computer as the system proxy, and sends each new connection from apps that follow that setting, such as browsers, over the LAN or the Wi-Fi, by measured speed or evenly. Several connections together can then use both lines. It is not bonding: a single download, call or game still uses one line, and apps that ignore the proxy setting, VPNs, games and calls keep using the normal route. A built-in speed test shows what each line and both together actually deliver. In Auto mode the app is failover only: one connection at a time.</p></div>
         </details>
         <details>
           <summary>Do calls and downloads survive a switch?</summary>
-          <div class="a"><p>Not reliably. The app changes route priority only; it does not bond links, proxy or tunnel traffic. Connections that were open on the dead link usually have to reconnect; it doesn't keep sessions alive the way a bonding VPN can.</p></div>
+          <div class="a"><p>Not reliably. Failover changes route priority only and does not tunnel traffic. Connections that were open on the dead link usually have to reconnect; it doesn't keep sessions alive the way a bonding VPN can. In Split mode, new connections go to the line that still works, but connections already open on the failed line still drop.</p></div>
         </details>
         <details>
           <summary>What counts as a bad connection?</summary>
@@ -560,7 +565,7 @@
         </details>
         <details>
           <summary>Does it collect any data?</summary>
-          <div class="a"><p>No. There is no telemetry and no account. The app only contacts your ping targets (8.8.8.8 and 1.1.1.1 by default), your adapters' own DNS servers for the DNS check, and the GitHub API to look for updates, which you can turn off. Settings and logs stay on your computer.</p></div>
+          <div class="a"><p>No. There is no telemetry and no account. The app only contacts your ping targets (8.8.8.8 and 1.1.1.1 by default), your adapters' own DNS servers for the DNS check, and the GitHub API to look for updates, which you can turn off. Only if you use Split, it also asks 1.1.1.1 for each line's public address, and its speed test downloads from Cloudflare's speed test servers. Settings and logs stay on your computer.</p></div>
         </details>
         <details>
           <summary>Is it free and open source?</summary>
