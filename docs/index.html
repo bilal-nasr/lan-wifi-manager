@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LAN Wi-Fi Manager: auto-switch from Ethernet to Wi-Fi</title>
-<meta name="description" content="Free for Windows and Ubuntu, with a macOS preview. When Ethernet is connected but has no internet, it moves traffic to Wi-Fi, then back when the LAN recovers.">
-<link rel="canonical" href="https://bilal-nasr.github.io/lan-wifi-manager/">
+<title>LAN Wi-Fi Manager: Ethernet to Wi-Fi failover, free for Windows and Ubuntu</title>
+<meta name="description" content="Ethernet connected but no internet? LAN Wi-Fi Manager moves your traffic to Wi-Fi, then back when the LAN recovers. Free for Windows and Ubuntu, with a macOS preview.">
+<link rel="canonical" href="https://lan.bilalnasr.com/">
 <meta name="google-site-verification" content="1_C-5LImlubvWwri9gqXDxC5Rlfo2_-Y1RVopJmvQTk">
 <meta name="theme-color" content="#111318">
 <meta name="color-scheme" content="light dark">
 <meta name="author" content="bilal-nasr">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="LAN Wi-Fi Manager">
-<meta property="og:title" content="LAN Wi-Fi Manager: auto-switch from Ethernet to Wi-Fi">
-<meta property="og:description" content="Free for Windows and Ubuntu, with a macOS preview. When Ethernet is connected but has no internet, it moves traffic to Wi-Fi, then back when the LAN recovers.">
-<meta property="og:url" content="https://bilal-nasr.github.io/lan-wifi-manager/">
-<meta property="og:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta property="og:title" content="LAN Wi-Fi Manager: Ethernet to Wi-Fi failover, free for Windows and Ubuntu">
+<meta property="og:description" content="Ethernet connected but no internet? LAN Wi-Fi Manager moves your traffic to Wi-Fi, then back when the LAN recovers. Free for Windows and Ubuntu, with a macOS preview.">
+<meta property="og:url" content="https://lan.bilalnasr.com/">
+<meta property="og:image" content="https://lan.bilalnasr.com/og-image.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
 <meta property="og:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LAN Wi-Fi Manager: auto-switch from Ethernet to Wi-Fi">
-<meta name="twitter:description" content="Free for Windows and Ubuntu, with a macOS preview. When Ethernet is connected but has no internet, it moves traffic to Wi-Fi, then back when the LAN recovers.">
-<meta name="twitter:image" content="https://bilal-nasr.github.io/lan-wifi-manager/og-image.png">
+<meta name="twitter:title" content="LAN Wi-Fi Manager: Ethernet to Wi-Fi failover, free for Windows and Ubuntu">
+<meta name="twitter:description" content="Ethernet connected but no internet? LAN Wi-Fi Manager moves your traffic to Wi-Fi, then back when the LAN recovers. Free for Windows and Ubuntu, with a macOS preview.">
+<meta name="twitter:image" content="https://lan.bilalnasr.com/og-image.png">
 <meta name="twitter:image:alt" content="LAN Wi-Fi Manager route map: traffic moves from the green LAN line to the blue Wi-Fi line and back">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/icon-32.png" type="image/png" sizes="32x32">
@@ -37,29 +37,32 @@
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer",
+      "@id": "https://lan.bilalnasr.com/#developer",
       "name": "bilal-nasr",
-      "url": "https://github.com/bilal-nasr",
-      "sameAs": ["https://github.com/bilal-nasr"]
+      "url": "https://lan.bilalnasr.com/",
+      "email": "me@bilalnasr.com",
+      "sameAs": ["https://github.com/bilal-nasr"],
+      "contactPoint": { "@type": "ContactPoint", "contactType": "customer support", "email": "me@bilalnasr.com", "availableLanguage": "English" }
     },
     {
       "@type": "WebSite",
-      "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#website",
+      "@id": "https://lan.bilalnasr.com/#website",
       "name": "LAN Wi-Fi Manager",
-      "url": "https://bilal-nasr.github.io/lan-wifi-manager/",
+      "url": "https://lan.bilalnasr.com/",
       "inLanguage": "en",
-      "publisher": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer" },
-      "about": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#app" }
+      "publisher": { "@id": "https://lan.bilalnasr.com/#developer" },
+      "about": { "@id": "https://lan.bilalnasr.com/#app" }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#app",
+      "@id": "https://lan.bilalnasr.com/#app",
       "name": "LAN Wi-Fi Manager",
       "description": "LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers. It helps when your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router. Its Split mode can also use both lines at once: apps that follow the system proxy setting send each new connection over the LAN or the Wi-Fi, so several connections together can use both, while a single download stays on one line.",
-      "url": "https://bilal-nasr.github.io/lan-wifi-manager/",
+      "url": "https://lan.bilalnasr.com/",
       "sameAs": ["https://github.com/bilal-nasr/lan-wifi-manager"],
       "applicationCategory": "UtilitiesApplication",
       "applicationSubCategory": "Network failover",
+      "installUrl": "https://lan.bilalnasr.com/#download",
       "operatingSystem": "Windows 10, Windows 11, Ubuntu 24.04, macOS 13.6 or later",
       "softwareVersion": "2.5.0",
       "datePublished": "2026-09-25",
@@ -67,19 +70,19 @@
       "releaseNotes": "https://github.com/bilal-nasr/lan-wifi-manager/releases/tag/v2.5.0",
       "license": "https://github.com/bilal-nasr/lan-wifi-manager#license",
       "isAccessibleForFree": true,
-      "image": "https://bilal-nasr.github.io/lan-wifi-manager/og-image.png",
+      "image": "https://lan.bilalnasr.com/og-image.png",
       "screenshot": [
-        "https://bilal-nasr.github.io/lan-wifi-manager/status.png",
-        "https://bilal-nasr.github.io/lan-wifi-manager/resources.png",
-        "https://bilal-nasr.github.io/lan-wifi-manager/settings.png"
+        "https://lan.bilalnasr.com/status.png",
+        "https://lan.bilalnasr.com/resources.png",
+        "https://lan.bilalnasr.com/settings.png"
       ],
       "downloadUrl": [
         "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager.exe",
         "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_amd64.deb",
         "https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_universal.dmg"
       ],
-      "author": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer" },
-      "publisher": { "@id": "https://bilal-nasr.github.io/lan-wifi-manager/#developer" },
+      "author": { "@id": "https://lan.bilalnasr.com/#developer" },
+      "publisher": { "@id": "https://lan.bilalnasr.com/#developer" },
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
   ]
@@ -138,6 +141,7 @@
         <li class="nav-opt"><a href="#compare">Compare</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="guides/">Guides</a></li>
+        <li class="nav-opt"><a href="#feedback">Feedback</a></li>
       </ul>
     </nav>
     <div class="band-right">
@@ -204,7 +208,7 @@
                 <span><b>macOS 13.6+ (preview)</b><small>Universal .dmg, 13.7 MB</small></span>
               </a>
             </div>
-            <p class="get-meta">Version 2.5.0 for Windows, Ubuntu and macOS<span class="dot" aria-hidden="true">·</span>1 November 2026<span class="dot" aria-hidden="true">·</span>Free, no account<span class="dot" aria-hidden="true">·</span><a href="#download">Install notes and checksums</a></p>
+            <p class="get-meta">Version 2.5.0 for Windows, Ubuntu and macOS<span class="dot" aria-hidden="true">·</span>1 November 2026<span class="dot" aria-hidden="true">·</span>Free, no account<span class="dot" aria-hidden="true">·</span><a href="#download">Install notes and checksums</a><span class="dot" aria-hidden="true">·</span><a href="#feedback">Report a bug or rate it</a></p>
           </div>
           <span class="m" aria-hidden="true"></span><span class="m" aria-hidden="true"></span>
         </div>
@@ -247,7 +251,7 @@
             <tr><th scope="row">Latest version</th><td>2.5.0 for Windows, Ubuntu and macOS, released <time datetime="2026-11-01">1 November 2026</time> (<a href="https://github.com/bilal-nasr/lan-wifi-manager/releases/tag/v2.5.0">release notes</a>). First public release: 1.5.0, <time datetime="2026-09-25">25 September 2026</time>.</td></tr>
             <tr><th scope="row">Files</th><td>Windows: portable .exe, 1.9 MB, not code-signed. Ubuntu: .deb package, 8.5 MB. macOS: universal .dmg, 13.7 MB, not signed or notarized.</td></tr>
             <tr><th scope="row">Privacy</th><td>No telemetry. It contacts only your ping targets, your adapters' DNS servers, and the GitHub API to check for updates, which you can turn off.</td></tr>
-            <tr><th scope="row">Developer</th><td><a href="https://github.com/bilal-nasr">bilal-nasr</a> on GitHub. Questions and bug reports go to <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">GitHub issues</a>.</td></tr>
+            <tr><th scope="row">Developer</th><td><a href="https://github.com/bilal-nasr">bilal-nasr</a> on GitHub. Contact: <a href="mailto:me@bilalnasr.com">me@bilalnasr.com</a>. Bug reports go to <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">GitHub issues</a> or by email; <a href="#feedback">rate the app or report a bug</a>.</td></tr>
           </tbody>
         </table>
       </div>
@@ -520,7 +524,7 @@
     <div class="wrap board">
       <header>
         <h2 id="h-faq">Questions</h2>
-        <p>Something else? Ask in a <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">GitHub issue</a>.</p>
+        <p>Something else? Ask in a <a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">GitHub issue</a> or email <a href="mailto:me@bilalnasr.com">me@bilalnasr.com</a>.</p>
       </header>
       <div class="board-body faq">
         <details open>
@@ -575,6 +579,21 @@
     </div>
   </section>
 
+  <section class="section" id="feedback" aria-labelledby="h-feedback">
+    <div class="wrap board">
+      <header>
+        <h2 id="h-feedback">Report a bug or rate the app</h2>
+        <p>One person makes this app, and every report is read. If something broke, or it saved your evening, say so.</p>
+      </header>
+      <ul class="board-body links">
+        <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/issues/new"><b>Report a bug on GitHub</b><span>Public and searchable. Include your system, the app version (v2.5.0 is the latest) and the Log tab lines around the problem.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="mailto:me@bilalnasr.com?subject=LAN%20Wi-Fi%20Manager%20bug%20report"><b>Report a bug by email</b><span>Prefer not to use GitHub? Write to me@bilalnasr.com with the same details.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="https://github.com/bilal-nasr/lan-wifi-manager"><b>Rate it with a star on GitHub</b><span>Press Star at the top of the repository. It is the quickest way to tell me, and others, that it works.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+        <li><a href="mailto:me@bilalnasr.com?subject=LAN%20Wi-Fi%20Manager%20feedback"><b>Rate it or send feedback by email</b><span>Tell me what worked, what didn't, and which system you use. The macOS build is a preview, so reports from real Macs help most.</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+
   <section class="section" id="guides" aria-labelledby="h-guides">
     <div class="wrap board">
       <header>
@@ -602,6 +621,8 @@
           <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/releases">Releases</a></li>
           <li><a href="https://github.com/bilal-nasr/lan-wifi-manager/issues">Report a problem</a></li>
           <li><a href="guides/">Guides</a></li>
+          <li><a href="#feedback">Rate or report</a></li>
+          <li><a href="mailto:me@bilalnasr.com">me@bilalnasr.com</a></li>
           <li><a href="#privacy">Privacy</a></li>
         </ul>
       </nav>

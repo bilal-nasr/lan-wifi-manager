@@ -2,7 +2,7 @@
 
 > LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers. Its Split mode can also use both lines at once: apps that follow the system proxy setting send each new connection over the LAN or the Wi-Fi, so several connections together can use both, while a single download stays on one line.
 
-This file is the full content of https://bilal-nasr.github.io/lan-wifi-manager/ and its guides, as plain Markdown. Last updated 2026-11-01, for version 2.5.0 on Windows, Ubuntu and macOS.
+This file is the full content of https://lan.bilalnasr.com/ and its guides, as plain Markdown. Last updated 2026-11-01, for version 2.5.0 on Windows, Ubuntu and macOS.
 
 ## At a glance
 
@@ -17,7 +17,7 @@ This file is the full content of https://bilal-nasr.github.io/lan-wifi-manager/ 
 | Latest version | 2.5.0 for Windows, Ubuntu and macOS, released 2026-11-01. First public release: 1.5.0, 2026-09-25. |
 | Files | Windows: portable .exe, 1.9 MB, not code-signed. Ubuntu: .deb package, 8.5 MB. macOS: universal .dmg, 13.7 MB, not signed or notarized. |
 | Privacy | No telemetry. It contacts only your ping targets, your adapters' DNS servers, and the GitHub API to check for updates, which you can turn off. |
-| Developer | bilal-nasr, https://github.com/bilal-nasr. Questions and bug reports: https://github.com/bilal-nasr/lan-wifi-manager/issues |
+| Developer | bilal-nasr, https://github.com/bilal-nasr. Contact: me@bilalnasr.com. Bug reports: https://github.com/bilal-nasr/lan-wifi-manager/issues or email. Ratings and feedback: a GitHub star or email, see https://lan.bilalnasr.com/#feedback |
 | Evidence | There are no ratings, reviews, user counts or press coverage yet. |
 
 ## The problem it solves
@@ -193,7 +193,7 @@ It is free, but not open source. You can use it at home or at work, with no ads 
 
 ## Guide: Switch from Ethernet to Wi-Fi automatically on Windows 11 and 10
 
-Source: https://bilal-nasr.github.io/lan-wifi-manager/guides/switch-ethernet-to-wifi-windows/ (last updated 2026-11-01)
+Source: https://lan.bilalnasr.com/guides/switch-ethernet-to-wifi-windows/ (last updated 2026-11-01)
 
 ### The short answer
 
@@ -279,7 +279,7 @@ A metric set by hand can't notice a failure or switch back. People handle that w
 
 ## Guide: Ubuntu: use Wi-Fi when Ethernet has no internet
 
-Source: https://bilal-nasr.github.io/lan-wifi-manager/guides/ubuntu-ethernet-wifi-failover/ (last updated 2026-11-01)
+Source: https://lan.bilalnasr.com/guides/ubuntu-ethernet-wifi-failover/ (last updated 2026-11-01)
 
 ### The short answer
 
@@ -380,7 +380,7 @@ LAN Wi-Fi Manager tests both devices and changes the Wi-Fi route metric for you,
 
 ## Guide: Using Ethernet and Wi-Fi at the same time
 
-Source: https://bilal-nasr.github.io/lan-wifi-manager/guides/ethernet-and-wifi-at-the-same-time/ (last updated 2026-11-01)
+Source: https://lan.bilalnasr.com/guides/ethernet-and-wifi-at-the-same-time/ (last updated 2026-11-01)
 
 ### Can you use Ethernet and Wi-Fi at the same time?
 
@@ -467,9 +467,10 @@ The website and the app use the Overpass font, © 2021 The Overpass Project Auth
 
 ## Links
 
-- Website: https://bilal-nasr.github.io/lan-wifi-manager/
-- Short index for AI tools: https://bilal-nasr.github.io/lan-wifi-manager/llms.txt
+- Website: https://lan.bilalnasr.com/
+- Short index for AI tools: https://lan.bilalnasr.com/llms.txt
 - GitHub repository (README, screenshots, releases): https://github.com/bilal-nasr/lan-wifi-manager
 - Latest release: https://github.com/bilal-nasr/lan-wifi-manager/releases/latest
 - Issues: https://github.com/bilal-nasr/lan-wifi-manager/issues
 - Developer: https://github.com/bilal-nasr
+- Contact: me@bilalnasr.com

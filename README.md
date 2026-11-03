@@ -4,7 +4,7 @@ LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, th
 
 It helps when your Wi-Fi has its own route to the internet: a phone hotspot, a second provider or a separate router. If both come from the same router and that router or the provider is down, there is nothing better to switch to.
 
-**[Website](https://bilal-nasr.github.io/lan-wifi-manager/)** · **[Download](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest)** · **[FAQ](#faq)**
+**[Website](https://lan.bilalnasr.com/)** · **[Download](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest)** · **[FAQ](#faq)**
 
 ![Status tab: the route map shows which connection carries your traffic](docs/status.png)
 
@@ -99,7 +99,7 @@ Settings and logs stay on your computer: `%AppData%\LanWifiManager` on Windows, 
 
 ## Problems or ideas?
 
-Open an [issue](https://github.com/bilal-nasr/lan-wifi-manager/issues).
+Open an [issue](https://github.com/bilal-nasr/lan-wifi-manager/issues), or email [me@bilalnasr.com](mailto:me@bilalnasr.com). If the app is useful to you, a star on this repository is the quickest way to rate it. More at https://lan.bilalnasr.com/#feedback.
 
 ## License
 

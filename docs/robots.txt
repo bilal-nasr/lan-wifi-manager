@@ -1,9 +1,6 @@
 # LAN Wi-Fi Manager website. Every crawler, including AI search, AI assistant and AI training crawlers, is welcome.
 #
-# Note: crawlers only read robots.txt at the root of a host (https://bilal-nasr.github.io/robots.txt),
-# so on this GitHub Pages project site (/lan-wifi-manager/) this file is ignored and crawling is simply
-# allowed by default. It takes effect only if the site moves to a custom domain or to the
-# bilal-nasr.github.io root repo. Submit the sitemap in Google Search Console and Bing Webmaster Tools.
+# Served from the root of https://lan.bilalnasr.com. Submit the sitemap in Google Search Console and Bing Webmaster Tools.
 
 User-agent: *
 Allow: /
@@ -38,4 +35,4 @@ User-agent: CCBot
 User-agent: meta-externalagent
 Allow: /
 
-Sitemap: https://bilal-nasr.github.io/lan-wifi-manager/sitemap.xml
+Sitemap: https://lan.bilalnasr.com/sitemap.xml
