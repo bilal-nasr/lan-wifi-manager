@@ -2,10 +2,10 @@
 
 > LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers. Its Split mode can also use both lines at once: apps that follow the system proxy setting send each new connection over the LAN or the Wi-Fi, so several connections together can use both, while a single download stays on one line.
 
-Key facts, as of 1 November 2026:
+Key facts, as of 3 November 2026:
 
-- Latest version: 2.5.0 for Windows, Ubuntu and macOS, released 2026-11-01. First public release: 1.5.0, 2026-09-25.
-- Systems: Windows 10 and 11 (portable .exe, 1.9 MB, needs administrator rights, not code-signed); Ubuntu 24.04 (.deb, 8.5 MB); macOS 13.6 or later (universal .dmg, 13.7 MB, a preview that has not yet been tested on a real Mac, not signed or notarized).
+- Latest version: 2.6.0 for Windows, Ubuntu and macOS, released 2026-11-03. First public release: 1.5.0, 2026-09-25.
+- Systems: Windows 10 and 11 (portable .exe, 1.9 MB, needs administrator rights, not code-signed); Ubuntu 24.04 (.deb, 8.5 MB); macOS 13.6 or later (universal .dmg, 13.9 MB, a preview that has not yet been tested on a real Mac, not signed or notarized).
 - Price and licence: free for personal and work use; freeware, closed source. No ads, no paid tier, no account.
 - Privacy: no telemetry. It contacts only your ping targets (8.8.8.8 and 1.1.1.1 by default), your adapters' DNS servers, and the GitHub API to check for updates, which can be turned off. Only if you use Split, it also asks 1.1.1.1 for each line's public address, and its speed test downloads from Cloudflare's speed test servers. Split's proxy runs on your computer and never routes traffic through an outside server.
 - Limits: switching only helps when the Wi-Fi has its own route to the internet (a phone hotspot, a second provider or a separate router). Failover is one connection at a time. Split spreads new connections from proxy-aware apps over both lines; it is not bonding: a single download, call or game stays on one line, and apps that ignore the system proxy, VPNs and games are not covered. No VPN or outside server.
@@ -31,9 +31,9 @@ Key facts, as of 1 November 2026:
 ## Download
 
 - [Latest release](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest): release notes and all files for the current version
-- [Windows 10 and 11, LanWifiManager.exe](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest/download/LanWifiManager.exe): portable, 1.9 MB in 2.5.0; SmartScreen warns because it is not code-signed (More info, then Run anyway)
-- [Ubuntu 24.04, LanWifiManager_2.5.0_amd64.deb](https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_amd64.deb): 8.5 MB; install with `sudo apt install ./LanWifiManager_2.5.0_amd64.deb`
-- [macOS 13.6 or later, LanWifiManager_2.5.0_universal.dmg](https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_universal.dmg): 13.7 MB, preview; allow it under System Settings, Privacy & Security, Open Anyway
+- [Windows 10 and 11, LanWifiManager.exe](https://github.com/bilal-nasr/lan-wifi-manager/releases/latest/download/LanWifiManager.exe): portable, 1.9 MB in 2.6.0; SmartScreen warns because it is not code-signed (More info, then Run anyway)
+- [Ubuntu 24.04, LanWifiManager_2.6.0_amd64.deb](https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.6.0/LanWifiManager_2.6.0_amd64.deb): 8.5 MB; install with `sudo apt install ./LanWifiManager_2.6.0_amd64.deb`
+- [macOS 13.6 or later, LanWifiManager_2.6.0_universal.dmg](https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.6.0/LanWifiManager_2.6.0_universal.dmg): 13.9 MB, preview; allow it under System Settings, Privacy & Security, Open Anyway
 
 ## Project
 

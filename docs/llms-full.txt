@@ -2,7 +2,7 @@
 
 > LAN Wi-Fi Manager is a free app for Windows and Ubuntu, with a macOS preview, that keeps you online when your computer is connected by both Ethernet (LAN) and Wi-Fi at the same time. It tests the internet through each adapter and, when the LAN fails or gets poor, makes Wi-Fi the preferred route, then switches back when the LAN recovers. Its Split mode can also use both lines at once: apps that follow the system proxy setting send each new connection over the LAN or the Wi-Fi, so several connections together can use both, while a single download stays on one line.
 
-This file is the full content of https://lan.bilalnasr.com/ and its guides, as plain Markdown. Last updated 2026-11-01, for version 2.5.0 on Windows, Ubuntu and macOS.
+This file is the full content of https://lan.bilalnasr.com/ and its guides, as plain Markdown. Last updated 2026-11-03, for version 2.6.0 on Windows, Ubuntu and macOS.
 
 ## At a glance
 
@@ -14,8 +14,8 @@ This file is the full content of https://lan.bilalnasr.com/ and its guides, as p
 | Systems | Windows 10 and 11. Ubuntu 24.04. macOS 13.6 or later as a preview, not yet tested on a real Mac. |
 | Price | Free for personal and work use. No ads, no paid tier, no account. |
 | Licence | Freeware, closed source. Please don't redistribute modified copies. |
-| Latest version | 2.5.0 for Windows, Ubuntu and macOS, released 2026-11-01. First public release: 1.5.0, 2026-09-25. |
-| Files | Windows: portable .exe, 1.9 MB, not code-signed. Ubuntu: .deb package, 8.5 MB. macOS: universal .dmg, 13.7 MB, not signed or notarized. |
+| Latest version | 2.6.0 for Windows, Ubuntu and macOS, released 2026-11-03. First public release: 1.5.0, 2026-09-25. |
+| Files | Windows: portable .exe, 1.9 MB, not code-signed. Ubuntu: .deb package, 8.5 MB. macOS: universal .dmg, 13.9 MB, not signed or notarized. |
 | Privacy | No telemetry. It contacts only your ping targets, your adapters' DNS servers, and the GitHub API to check for updates, which you can turn off. |
 | Developer | bilal-nasr, https://github.com/bilal-nasr. Contact: me@bilalnasr.com. Bug reports: https://github.com/bilal-nasr/lan-wifi-manager/issues or email. Ratings and feedback: a GitHub star or email, see https://lan.bilalnasr.com/#feedback |
 | Evidence | There are no ratings, reviews, user counts or press coverage yet. |
@@ -55,16 +55,17 @@ With the default settings, a failover usually happens within about a minute of t
 - **Manual modes:** Use LAN, Use Wi-Fi, Toggle and Split, from the window or from the tray or top-bar icon.
 - **Runs in the background:** closes to the tray or top bar, starts at login if you want, notifies you when it switches, and keeps a daily log.
 - **Explains every switch:** the log tab lists each check that failed and why, for example packet loss or DNS not answering.
+- **Report a bug and rate the app (2.6.0):** built in. Report a bug opens a draft in your mail app (to me@bilalnasr.com) or a GitHub issue, with system and version filled in and an optional copy of the last 30 log lines; Rate this app takes 1 to 5 stars and a note. The app sends nothing by itself.
 - **Updates:** the Windows app updates itself. On Ubuntu and macOS it tells you when a new version is out and opens the download. You can turn update checks off.
 
 ## Download and install
 
-Version 2.5.0 for Windows, Ubuntu and macOS, released 2026-11-01. Free for personal and work use. Older versions and release notes: https://github.com/bilal-nasr/lan-wifi-manager/releases
+Version 2.6.0 for Windows, Ubuntu and macOS, released 2026-11-03. Free for personal and work use. Older versions and release notes: https://github.com/bilal-nasr/lan-wifi-manager/releases
 
 ### Windows 10 and 11
 
 Portable, nothing to install. File: `LanWifiManager.exe`, 1.9 MB.
-Download: https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager.exe (always the newest: https://github.com/bilal-nasr/lan-wifi-manager/releases/latest/download/LanWifiManager.exe)
+Download: https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.6.0/LanWifiManager.exe (always the newest: https://github.com/bilal-nasr/lan-wifi-manager/releases/latest/download/LanWifiManager.exe)
 
 1. Run the file. It is a single portable program.
 2. Allow administrator rights. Windows only lets admin programs change which connection it prefers.
@@ -72,27 +73,27 @@ Download: https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.
 
 Why the warning: the exe is not code-signed, so Windows doesn't recognise the publisher. To check the file, compare its hash in PowerShell with `Get-FileHash .\LanWifiManager.exe`.
 
-SHA-256: `26f33588bc537967490605a9f128d17eb2ed66a4d5c36684bf76a361d70603c8`
+SHA-256: `5b30001515c1d36853ffbacb8f4f8eb3cd778d8074727659c0651d5445f72ff8`
 
 ### Ubuntu 24.04
 
-64-bit .deb package. File: `LanWifiManager_2.5.0_amd64.deb`, 8.5 MB.
-Download: https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_amd64.deb
+64-bit .deb package. File: `LanWifiManager_2.6.0_amd64.deb`, 8.5 MB.
+Download: https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.6.0/LanWifiManager_2.6.0_amd64.deb
 
 1. In the folder you downloaded it to, install it:
 
    ```
-   sudo apt install ./LanWifiManager_2.5.0_amd64.deb
+   sudo apt install ./LanWifiManager_2.6.0_amd64.deb
    ```
 
 2. Open LAN Wi-Fi Manager from the app list. Switching needs no password: NetworkManager allows it for the signed-in user.
 
-SHA-256: `e8c996925c879f0fec9c03956149c4c3a095c1d2ab56d62ade2a144983aaf744`
+SHA-256: `7b122dd483d750c00931e4e495879f774362d106bf5345240d75143eeea1ed6b`
 
 ### macOS 13.6 or later (preview)
 
-Universal .dmg for Apple silicon and Intel. File: `LanWifiManager_2.5.0_universal.dmg`, 13.7 MB. **Preview: not yet tested on a real Mac.**
-Download: https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.0/LanWifiManager_2.5.0_universal.dmg
+Universal .dmg for Apple silicon and Intel. File: `LanWifiManager_2.6.0_universal.dmg`, 13.9 MB. **Preview: not yet tested on a real Mac.**
+Download: https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.6.0/LanWifiManager_2.6.0_universal.dmg
 
 1. Drag the app to Applications and open it.
 2. When macOS says it could not verify the app, choose Done, then go to System Settings → Privacy & Security and choose Open Anyway. You need to do this again after each update.
@@ -100,7 +101,7 @@ Download: https://github.com/bilal-nasr/lan-wifi-manager/releases/download/v2.5.
 
 Why the warning: the app is not signed or notarized by Apple. Monitoring and the speed display work without the helper; only switching needs it. Please report anything that doesn't work in an issue: https://github.com/bilal-nasr/lan-wifi-manager/issues
 
-SHA-256: `ec56c9e285dddefec067a012ccca3192bbb07d550c18022974bcf02ac1c7af16`
+SHA-256: `fd8c1b2aab3e753d3410fd3332149a3324d5aa86e4bd3e3a4f253bac915de686`
 
 ### About the "Source code" downloads
 
@@ -193,7 +194,7 @@ It is free, but not open source. You can use it at home or at work, with no ads 
 
 ## Guide: Switch from Ethernet to Wi-Fi automatically on Windows 11 and 10
 
-Source: https://lan.bilalnasr.com/guides/switch-ethernet-to-wifi-windows/ (last updated 2026-11-01)
+Source: https://lan.bilalnasr.com/guides/switch-ethernet-to-wifi-windows/ (last updated 2026-11-03)
 
 ### The short answer
 
@@ -279,7 +280,7 @@ A metric set by hand can't notice a failure or switch back. People handle that w
 
 ## Guide: Ubuntu: use Wi-Fi when Ethernet has no internet
 
-Source: https://lan.bilalnasr.com/guides/ubuntu-ethernet-wifi-failover/ (last updated 2026-11-01)
+Source: https://lan.bilalnasr.com/guides/ubuntu-ethernet-wifi-failover/ (last updated 2026-11-03)
 
 ### The short answer
 
@@ -380,7 +381,7 @@ LAN Wi-Fi Manager tests both devices and changes the Wi-Fi route metric for you,
 
 ## Guide: Using Ethernet and Wi-Fi at the same time
 
-Source: https://lan.bilalnasr.com/guides/ethernet-and-wifi-at-the-same-time/ (last updated 2026-11-01)
+Source: https://lan.bilalnasr.com/guides/ethernet-and-wifi-at-the-same-time/ (last updated 2026-11-03)
 
 ### Can you use Ethernet and Wi-Fi at the same time?
 
